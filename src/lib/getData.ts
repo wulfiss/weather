@@ -1,28 +1,17 @@
-import { json } from '@sveltejs/kit';
-
-async function getWeather(city = 'malabrigo,arg') {
+const getWeather = async (city = 'malabrigo') => {
 	try {
 		const response = await fetch(
-			`https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=9a76d82b7543318a55de755f2bc6b68d`,
+			`https://api.weatherapi.com/v1/current.json?key=0a29cac888c648b39b7161817232903&q=${city}&days=3&aqi=no&alerts=yes`,
 			{ mode: 'cors' }
 		);
 		const data = await response.json();
 		console.log('inside', data);
-		return await json(data);
+		return data;
 	} catch (error) {
 		console.error(error);
 	}
-}
+};
 
-const weather = getWeather();
-/* const getWeather = async (city = 'malabrigo,arg') => {
-	const response = await fetch(
-		`https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=9a76d82b7543318a55de755f2bc6b68d`,
-		{ mode: 'cors' }
-	);
-
-	const weather = await response.json();
-	return weather;
-}; */
+const weather = await getWeather();
 
 export { weather };

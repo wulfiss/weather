@@ -1,5 +1,1 @@
-<script>
-	import { weather } from '../lib/getData';
-</script>
-
-<p>{weather.name}</p>
+<a href="/Normal">About my site</a>

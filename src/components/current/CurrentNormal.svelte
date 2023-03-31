@@ -37,3 +37,9 @@
 		Pressure: {weather.current.pressure_mb} mbar
 	</li>
 </ul>
+
+<style lang="postcss">
+	li {
+		background-color: theme(colors.red.600);
+	}
+</style>

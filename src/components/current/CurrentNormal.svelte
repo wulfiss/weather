@@ -2,29 +2,27 @@
 	import { weather } from '../../lib/getData';
 </script>
 
-<div class="flex h-60 justify-around">
-	<div>
+<div class="flex h-60 justify-evenly">
+	<div class="flex flex-col items-center justify-around">
 		<img
-			class="object-fill-none h-40"
+			class="h-40 object-fill"
 			src={weather.current.condition.icon}
 			alt="condition imagen {weather.current.condition.text}"
 		/>
-		<p>{weather.current.condition.text}</p>
+		<p class="text-xl"><strong>{weather.current.condition.text}</strong></p>
 	</div>
-	<div>
-		<p>Temperature: {weather.current.temp_c} °C</p>
-
-		<p>Feels Like: {weather.current.feelslike_c} °C</p>
-		<p>Humidity: {weather.current.humidity}%</p>
-
-		<p>Wind Speed: {weather.current.wind_kph} Kph</p>
-
-		<p>Wind direction: {weather.current.wind_dir}</p>
-		<p>Pressure: {weather.current.pressure_mb} mbar</p>
-
-		<p>{weather.location.name}, {weather.location.region}, {weather.location.country}</p>
-
-		<p>{weather.current.last_updated}</p>
+	<div class="flex flex-col justify-around">
+		<p class="text-xl"><strong>Temperature: </strong>{weather.current.temp_c} °C</p>
+		<p class="text-xl"><strong>Feels Like: </strong>{weather.current.feelslike_c} °C</p>
+		<p class="text-xl"><strong>Humidity: </strong>{weather.current.humidity}%</p>
+		<p class="text-xl"><strong>Wind Speed: </strong>{weather.current.wind_kph} Kph</p>
+		<p class="text-xl"><strong>Wind direction: </strong>{weather.current.wind_dir}</p>
+		<p class="text-xl"><strong>Pressure: </strong>{weather.current.pressure_mb} mbar</p>
+		<br />
+		<p class="text-base">
+			{weather.location.name}, {weather.location.region}, {weather.location.country}
+		</p>
+		<p class="text-base">{weather.current.last_updated}</p>
 	</div>
 </div>
 

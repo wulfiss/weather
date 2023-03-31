@@ -12,7 +12,7 @@
 		<button class="md:btn-auto btn-sm btn mx-2 w-20 px-3 sm:btn-sm">Search</button>
 	</form>
 </header>
-<main class="mx-1 h-fit w-auto">
+<main class="mx-1 flex h-fit w-auto flex-col gap-5">
 	<slot />
 </main>
 
@@ -25,5 +25,9 @@
 
 	input[type='text'] {
 		@apply pl-4;
+	}
+
+	main {
+		@apply m-6;
 	}
 </style>

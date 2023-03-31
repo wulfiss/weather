@@ -3,6 +3,9 @@
 </script>
 
 <p>{weather.location.name}, {weather.location.region}, {weather.location.country}</p>
+
+<p>{weather.current.last_updated}</p>
+
 <ul>
 	<li>
 		{weather.current.condition.text}
@@ -10,9 +13,6 @@
 			src={weather.current.condition.icon}
 			alt="condition imagen {weather.current.condition.text}"
 		/>
-	</li>
-	<li>
-		{weather.current.last_updated}
 	</li>
 	<li>
 		Temperature: {weather.current.temp_c} °C

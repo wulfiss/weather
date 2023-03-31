@@ -2,7 +2,7 @@
 	import '../app.css';
 </script>
 
-<header class="mx-1 h-14 w-auto">
+<header class="mx-1 h-20 w-auto">
 	<form action="" class="flex h-full flex-row items-center justify-center gap-2">
 		<input
 			type="text"
@@ -12,7 +12,7 @@
 		<button class="md:btn-auto btn-sm btn mx-2 w-20 px-3 sm:btn-sm">Search</button>
 	</form>
 </header>
-<main class="mx-1 flex h-fit w-auto flex-col gap-5">
+<main class="flex h-fit w-full flex-col justify-center gap-6">
 	<slot />
 </main>
 
@@ -27,7 +27,7 @@
 		@apply pl-4;
 	}
 
-	main {
+	/* 	main {
 		@apply m-6;
-	}
+	} */
 </style>

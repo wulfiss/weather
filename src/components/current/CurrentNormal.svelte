@@ -2,16 +2,16 @@
 	import { weather } from '../../lib/getData';
 </script>
 
-<div class="flex h-60 justify-evenly">
+<div class="main mx-auto flex h-80 gap-20">
 	<div class="flex flex-col items-center justify-around">
 		<img
-			class="h-40 object-fill"
+			class="h-60 object-fill"
 			src={weather.current.condition.icon}
 			alt="condition imagen {weather.current.condition.text}"
 		/>
 		<p class="text-xl"><strong>{weather.current.condition.text}</strong></p>
 	</div>
-	<div class="flex flex-col justify-around">
+	<div class="flex flex-col justify-evenly">
 		<p class="text-xl"><strong>Temperature: </strong>{weather.current.temp_c} °C</p>
 		<p class="text-xl"><strong>Feels Like: </strong>{weather.current.feelslike_c} °C</p>
 		<p class="text-xl"><strong>Humidity: </strong>{weather.current.humidity}%</p>
@@ -27,4 +27,7 @@
 </div>
 
 <style lang="postcss">
+	div.main {
+		max-width: 900px;
+	}
 </style>

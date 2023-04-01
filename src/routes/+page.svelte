@@ -2,10 +2,10 @@
 	import CurrentNormal from '../components/current/CurrentNormal.svelte';
 	import DailyNormal from '../components/daily/DailyNormal.svelte';
 	import { onMount } from 'svelte';
-	import { getWeather } from '../lib/getData';
+	import { getCurrentWeather } from '../lib/getData';
 
 	onMount(() => {
-		getWeather();
+		getCurrentWeather();
 	});
 </script>
 

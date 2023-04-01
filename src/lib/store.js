@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 
-export const weatherStore = writable({
+export const currentWeatherStore = writable({
 	current: {
 		condition: {
 			icon: '...',

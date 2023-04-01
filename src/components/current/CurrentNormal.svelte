@@ -1,9 +1,9 @@
 <script>
-	import { weatherStore } from '../../lib/store';
+	import { currentWeatherStore } from '../../lib/store';
 
 	let weather;
 
-	weatherStore.subscribe((value) => {
+	currentWeatherStore.subscribe((value) => {
 		weather = value;
 	});
 

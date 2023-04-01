@@ -1,5 +1,5 @@
 <script>
-	import { getWeather } from '../../lib/getData';
+	import { getCurrentWeather } from '../../lib/getData';
 
 	let cityName = 'Malabrigo, Argentina';
 </script>
@@ -11,8 +11,9 @@
 		class="input-bordered input input-sm w-full max-w-xs"
 		bind:value={cityName}
 	/>
-	<button on:click={getWeather(cityName)} class="md:btn-auto btn-sm btn mx-2 w-20 px-3 sm:btn-sm"
-		>Search</button
+	<button
+		on:click={getCurrentWeather(cityName)}
+		class="md:btn-auto btn-sm btn mx-2 w-20 px-3 sm:btn-sm">Search</button
 	>
 </form>
 

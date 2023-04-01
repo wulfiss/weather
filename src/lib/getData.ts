@@ -1,4 +1,4 @@
-import { currentWeatherStore } from './store';
+import { currentWeatherStore, completeWeather } from './store';
 
 const getCurrentWeather = async (city = 'reconquista') => {
 	try {
@@ -8,6 +8,7 @@ const getCurrentWeather = async (city = 'reconquista') => {
 		);
 		const data = await response.json();
 		currentWeatherStore.set(await data);
+		completeWeather.set(await data);
 		console.log('inside', data);
 		return data;
 	} catch (error) {

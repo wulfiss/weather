@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 
-export const currentWeatherStore = writable({
+const currentWeatherStore = writable({
 	location: {
 		country: '...',
 		region: '...',
@@ -66,3 +66,7 @@ export const currentWeatherStore = writable({
 		}
 	}
 });
+
+const completeWeather = writable();
+
+export { currentWeatherStore, completeWeather };

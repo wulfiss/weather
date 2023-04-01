@@ -30,7 +30,7 @@
 		<p class="text-base">
 			{weather.location.name}, {weather.location.region}, {weather.location.country}
 		</p>
-		<p class="text-base">{weather.current.last_updated}</p>
+		<p class="text-base"><strong>Last Update: </strong>{weather.current.last_updated}</p>
 	</div>
 </div>
 

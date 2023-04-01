@@ -7,7 +7,7 @@
 		{#each $completeWeather.forecast.forecastday as days, i}
 			<div class="flex flex-col gap-1" id="card{i}">
 				<div class="flex flex-col items-center">
-					<p>{days.date}</p>
+					<p><strong>{days.date}</strong></p>
 					<img
 						class="mx-auto h-10 w-auto"
 						src={days.day.condition.icon}

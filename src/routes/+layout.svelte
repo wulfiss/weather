@@ -6,7 +6,7 @@
 <header class="mx-1 h-20 w-auto">
 	<SearchBar />
 </header>
-<main class="flex h-fit w-full flex-col justify-center gap-6">
+<main class="flex h-fit w-full flex-col justify-center gap-10">
 	<slot />
 </main>
 

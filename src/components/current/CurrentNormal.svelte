@@ -12,7 +12,7 @@
 				>
 			</h1>
 			<img
-				class="h-48 object-fill"
+				class="h-48 object-contain"
 				src={$completeWeather.current.condition.icon}
 				alt="condition imagen {$completeWeather.current.condition.text}"
 			/>

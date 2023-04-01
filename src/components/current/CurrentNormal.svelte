@@ -1,5 +1,13 @@
 <script>
-	import { weather } from '../../lib/getData';
+	import { weatherStore } from '../../lib/store';
+
+	let weather;
+
+	weatherStore.subscribe((value) => {
+		weather = value;
+	});
+
+	console.log('store', weather);
 </script>
 
 <div class="main mx-auto flex h-80 gap-20">

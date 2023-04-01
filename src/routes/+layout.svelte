@@ -1,5 +1,8 @@
 <script>
 	import '../app.css';
+	import { getWeather } from '../lib/getData';
+
+	let cityName = 'Malabrigo, Argentina';
 </script>
 
 <header class="mx-1 h-20 w-auto">
@@ -8,8 +11,11 @@
 			type="text"
 			placeholder="Enter a city"
 			class="input-bordered input input-sm w-full max-w-xs"
+			bind:value={cityName}
 		/>
-		<button class="md:btn-auto btn-sm btn mx-2 w-20 px-3 sm:btn-sm">Search</button>
+		<button on:click={getWeather(cityName)} class="md:btn-auto btn-sm btn mx-2 w-20 px-3 sm:btn-sm"
+			>Search</button
+		>
 	</form>
 </header>
 <main class="flex h-fit w-full flex-col justify-center gap-6">
@@ -26,8 +32,4 @@
 	input[type='text'] {
 		@apply pl-4;
 	}
-
-	/* 	main {
-		@apply m-6;
-	} */
 </style>

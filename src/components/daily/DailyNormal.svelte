@@ -2,20 +2,20 @@
 	import { completeWeather } from '../../lib/store';
 </script>
 
-<div id="mainDaily" class="mx-auto grid grid-cols-3 gap-9">
+<div id="mainDaily" class="sm:mx-auto sm:grid sm:grid-cols-3 sm:gap-9">
 	{#if $completeWeather}
 		{#each $completeWeather.forecast.forecastday as days, i}
-			<div class="flex flex-col gap-1" id="card{i}">
-				<div class="flex flex-col items-center">
+			<div class="sm:flex sm:flex-col sm:gap-1" id="card{i}">
+				<div class="sm:flex sm:flex-col sm:items-center">
 					<p><strong>{days.date}</strong></p>
 					<img
-						class="mx-auto h-10 w-auto"
+						class="sm:mx-auto sm:h-10 sm:w-auto"
 						src={days.day.condition.icon}
 						alt={days.day.condition.text}
 					/>
 					<p><strong>{days.day.condition.text}</strong></p>
 				</div>
-				<div class="mx-auto h-0.5 w-4/5 bg-slate-500" />
+				<div class="bg-slate-500 sm:mx-auto sm:h-0.5 sm:w-4/5" />
 				<div>
 					<p><strong>Max Temperature: </strong>{days.day.maxtemp_c}°C</p>
 					<p><strong>Min Temperature: </strong>{days.day.mintemp_c}°C</p>

@@ -3,10 +3,10 @@
 	import SearchBar from '../components/SearchBar/SearchBar.svelte';
 </script>
 
-<header class="mx-1 h-20 w-auto">
+<header class="w-full flex-1 justify-center sm:mx-1 sm:h-20 sm:w-auto">
 	<SearchBar />
 </header>
-<main class="flex h-fit w-full flex-col justify-center gap-10">
+<main class="sm:flex sm:h-fit sm:w-full sm:flex-col sm:justify-center sm:gap-10">
 	<slot />
 </main>
 

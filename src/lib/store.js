@@ -1,6 +1,11 @@
 import { writable } from 'svelte/store';
 
 export const currentWeatherStore = writable({
+	location: {
+		country: '...',
+		region: '...',
+		name: '...'
+	},
 	current: {
 		condition: {
 			icon: '...',
@@ -14,9 +19,38 @@ export const currentWeatherStore = writable({
 		pressure_mb: '...',
 		last_updated: '...'
 	},
-	location: {
-		country: '...',
-		region: '...',
-		name: '...'
+	forecast: {
+		forecastday: {
+			0: {
+				date: '',
+				day: {
+					avghumidity: '',
+					daily_chance_of_rain: '',
+					maxtemp_c: '',
+					mintemp_c: ''
+				},
+				hour: {}
+			},
+			1: {
+				date: '',
+				day: {
+					avghumidity: '',
+					daily_chance_of_rain: '',
+					maxtemp_c: '',
+					mintemp_c: ''
+				},
+				hour: {}
+			},
+			2: {
+				date: '',
+				day: {
+					avghumidity: '',
+					daily_chance_of_rain: '',
+					maxtemp_c: '',
+					mintemp_c: ''
+				},
+				hour: {}
+			}
+		}
 	}
 });

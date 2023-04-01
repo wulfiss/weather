@@ -24,6 +24,10 @@ export const currentWeatherStore = writable({
 			0: {
 				date: '',
 				day: {
+					condition: {
+						icon: '',
+						text: ''
+					},
 					avghumidity: '',
 					daily_chance_of_rain: '',
 					maxtemp_c: '',
@@ -34,6 +38,10 @@ export const currentWeatherStore = writable({
 			1: {
 				date: '',
 				day: {
+					condition: {
+						icon: '',
+						text: ''
+					},
 					avghumidity: '',
 					daily_chance_of_rain: '',
 					maxtemp_c: '',
@@ -44,6 +52,10 @@ export const currentWeatherStore = writable({
 			2: {
 				date: '',
 				day: {
+					condition: {
+						icon: '',
+						text: ''
+					},
 					avghumidity: '',
 					daily_chance_of_rain: '',
 					maxtemp_c: '',

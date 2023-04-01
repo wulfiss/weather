@@ -1,10 +1,20 @@
 <script>
+	import { currentWeatherStore } from '../../lib/store';
+
+	let weather;
+
+	currentWeatherStore.subscribe((value) => {
+		weather = value.forecast.forecastday;
+	});
+
+	console.log('daily', weather);
 </script>
 
-<h1 class="text-3xl font-bold underline">Under construction 'DAILY'</h1>
+<div id="main">
+	<div id="card1">
+		<img src="" alt="" srcset="" />
+	</div>
+</div>
 
 <style lang="postcss">
-	h1 {
-		background-color: theme(colors.gray.200);
-	}
 </style>

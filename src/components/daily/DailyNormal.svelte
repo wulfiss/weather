@@ -1,10 +1,37 @@
-<script>
+<script lang="ts">
 	import { completeWeather } from '../../lib/store';
+
+	/* what do the code below is to set and change the href of the <a> button alike, depending on the length of the 
+		object or arr that it is wanted to show in the carousel, this is not the best implementation so maybe in other 
+		project where I want to use a carousel I use another things */
+	let leftId: string = '#slide';
+	let rightId: string = '#slide';
+
+	if ($completeWeather && leftId === '#slide' && rightId === '#slide') {
+		leftId += $completeWeather.forecast.forecastday.length - 1;
+		rightId += 1;
+	}
+
+	function changeCard(activeCardIndex: number, obj) {
+		let newActiveCardIndexLeft = activeCardIndex - 1;
+		let newActiveCardIndexRight = activeCardIndex + 1;
+
+		if (newActiveCardIndexLeft < 0) {
+			newActiveCardIndexLeft = obj.length - 1;
+		}
+		if (newActiveCardIndexRight >= obj.length) {
+			newActiveCardIndexRight = 0;
+		}
+		leftId = '#slide' + newActiveCardIndexLeft;
+		rightId = '#slide' + newActiveCardIndexRight;
+	}
 </script>
 
 <br />
+
 <div id="mainDaily" class="sm:mx-auto sm:grid sm:grid-cols-3 sm:gap-9">
 	{#if $completeWeather}
+		<!------full screen------>
 		{#each $completeWeather.forecast.forecastday as days, i}
 			<div class="hidden sm:flex sm:flex-col sm:gap-1" id="card{i}">
 				<div class="sm:flex sm:flex-col sm:items-center">
@@ -25,6 +52,7 @@
 				</div>
 			</div>
 		{/each}
+		<!------mobile screen------>
 		<div class="carousel w-full sm:hidden">
 			{#each $completeWeather.forecast.forecastday as days, i}
 				<div id="slide{i}" class="carousel-item relative w-full">
@@ -52,16 +80,16 @@
 						<div
 							class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between"
 						>
-							{#if i == 0}
-								<a href="#slide2" class="btn-circle btn">❮</a>
-								<a href="#slide1" class="btn-circle btn">❯</a>
-							{:else if i == 1}
-								<a href="#slide0" class="btn-circle btn">❮</a>
-								<a href="#slide2" class="btn-circle btn">❯</a>
-							{:else}
-								<a href="#slide1" class="btn-circle btn">❮</a>
-								<a href="#slide0" class="btn-circle btn">❯</a>
-							{/if}
+							<a
+								href={leftId}
+								on:click={changeCard(i, $completeWeather.forecast.forecastday)}
+								class="btn-circle btn">❮</a
+							>
+							<a
+								href={rightId}
+								on:click={changeCard(i, $completeWeather.forecast.forecastday)}
+								class="btn-circle btn">❯</a
+							>
 						</div>
 					</div>
 				</div>

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import CurrentNormal from '../components/current/CurrentNormal.svelte';
 	import DailyNormal from '../components/daily/DailyNormal.svelte';
+	import Hourly from '../components/hourly/hourly.svelte';
 	import { onMount } from 'svelte';
 	import { getCurrentWeather } from '../lib/getData';
 
@@ -11,3 +12,4 @@
 
 <svelte:component this={CurrentNormal} />
 <svelte:component this={DailyNormal} />
+<svelte:component this={Hourly} />

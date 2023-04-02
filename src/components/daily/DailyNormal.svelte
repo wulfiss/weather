@@ -4,6 +4,7 @@
 	/* what do the code below is to set and change the href of the <a> button alike, depending on the length of the 
 		object or arr that it is wanted to show in the carousel, this is not the best implementation so maybe in other 
 		project where I want to use a carousel I use another things */
+
 	let leftId: string = '#slide';
 	let rightId: string = '#slide';
 

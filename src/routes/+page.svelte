@@ -11,5 +11,5 @@
 </script>
 
 <svelte:component this={CurrentNormal} />
-<svelte:component this={DailyNormal} />
+<!-- <svelte:component this={DailyNormal} /> -->
 <svelte:component this={Hourly} />

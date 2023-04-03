@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Fullscreen from './Fullscreen.svelte';
-	import Mobile from './Mobile.svelte';
+	import FullscreenDaily from './FullscreenDaily.svelte';
+	import MobileDaily from './MobileDaily.svelte';
 </script>
 
-<Fullscreen />
-<Mobile />
+<FullscreenDaily />
+<MobileDaily />

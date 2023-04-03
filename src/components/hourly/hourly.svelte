@@ -1,7 +1,8 @@
 <script>
-	import Fullscreen from './Fullscreen.svelte';
-	import Mobile from './Mobile.svelte';
+	import FullscreenHourly from './FullscreenHourly.svelte';
+	import MobileHourly from './MobileHourly.svelte';
+	let test = 0;
 </script>
 
-<Fullscreen />
-<Mobile />
+<FullscreenHourly />
+<MobileHourly />

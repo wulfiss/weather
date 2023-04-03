@@ -8,22 +8,29 @@
 	let rightId: string = '#slide';
 
 	let obj = [];
-
-	if ($completeWeather) {
+	let objFull = [];
+	/*  $: means reactivity a little of black magic of svelte, so when 'completeWeather' gets updated it will execute the if again updating the obj with new info */
+	$: if ($completeWeather) {
 		obj = [];
-		console.log('objB', obj);
 		for (let i = 0; i < 23; i += 4) obj.push($completeWeather.forecast.forecastday[0].hour[i]);
-		console.log('objA', obj);
+
+		objFull = [];
+		let tempOne = [];
+		let tempTwo = [];
+		for (let i = 0; i < 9; i += 4) tempOne.push($completeWeather.forecast.forecastday[0].hour[i]);
+		for (let i = 12; i < 23; i += 4) tempTwo.push($completeWeather.forecast.forecastday[0].hour[i]);
+		objFull.push(tempOne, tempTwo);
+		console.log(objFull);
 	}
 
 	if ($completeWeather && leftId === '#slide' && rightId === '#slide') {
-		leftId += $completeWeather.forecast.forecastday.length - 1;
+		leftId += obj.length - 1;
 		rightId += 1;
 	}
 
 	function changeCard(activeCardIndex: number, obj, direction: number) {
-		let newActiveCardIndexLeft = activeCardIndex - 1;
-		let newActiveCardIndexRight = activeCardIndex + 1;
+		let newActiveCardIndexLeft = activeCardIndex - direction;
+		let newActiveCardIndexRight = activeCardIndex + direction;
 
 		if (newActiveCardIndexLeft < 0) {
 			newActiveCardIndexLeft = obj.length - 1;
@@ -41,28 +48,79 @@
 <div id="mainDaily" class="sm:mx-auto sm:grid sm:grid-cols-3 sm:gap-9">
 	{#if $completeWeather}
 		<!------full screen------>
-		<!-- 		{#each $completeWeather.forecast.forecastday as days, i}
-			<div class="hidden sm:flex sm:flex-col sm:gap-1" id="card{i}">
-				<div class="sm:flex sm:flex-col sm:items-center">
-					<p><strong>{days.date}</strong></p>
-					<img
-						class="sm:mx-auto sm:h-10 sm:w-auto"
-						src={days.day.condition.icon}
-						alt={days.day.condition.text}
-					/>
-					<p><strong>{days.day.condition.text}</strong></p>
-				</div>
-				<div class="bg-slate-500 sm:mx-auto sm:h-0.5 sm:w-4/5" />
-				<div>
-					<p><strong>Max Temperature: </strong>{days.day.maxtemp_c}°C</p>
-					<p><strong>Min Temperature: </strong>{days.day.mintemp_c}°C</p>
-					<p><strong>Humidity: </strong>{days.day.avghumidity}%</p>
-					<p><strong>Change of Rain: </strong>{days.day.daily_chance_of_rain}%</p>
-				</div>
-			</div>
-		{/each} -->
-		<!------mobile screen------>
 		<div class="carousel w-full">
+			{#each objFull as hours, i}
+				<div id="slide{i}" class="carousel-item relative w-full">
+					<div class="w-full">
+						<div class="hidden sm:flex sm:flex-col sm:gap-1" id="card">
+							<div class="sm:flex sm:flex-col sm:items-center">
+								<p><strong>{hours[0].time}</strong></p>
+								<img
+									class="sm:mx-auto sm:h-10 sm:w-auto"
+									src={hours[0].condition.icon}
+									alt={hours[0].condition.text}
+								/>
+								<p><strong>{hours[0].condition.text}</strong></p>
+							</div>
+
+							<div class="bg-slate-500 sm:mx-auto sm:h-0.5 sm:w-4/5" />
+							<div>
+								<p><strong>Temperature: </strong>{hours[0].temp_c}°C</p>
+								<p><strong>Humidity: </strong>{hours[0].humidity}%</p>
+								<p><strong>Change of Rain: </strong>{hours[0].chance_of_rain}%</p>
+							</div>
+						</div>
+
+						<div class="hidden sm:flex sm:flex-col sm:gap-1" id="card">
+							<div class="sm:flex sm:flex-col sm:items-center">
+								<p><strong>{hours[1].time}</strong></p>
+								<img
+									class="sm:mx-auto sm:h-10 sm:w-auto"
+									src={hours[1].condition.icon}
+									alt={hours[1].condition.text}
+								/>
+								<p><strong>{hours[1].condition.text}</strong></p>
+							</div>
+
+							<div class="bg-slate-500 sm:mx-auto sm:h-0.5 sm:w-4/5" />
+							<div>
+								<p><strong>Temperature: </strong>{hours[1].temp_c}°C</p>
+								<p><strong>Humidity: </strong>{hours[1].humidity}%</p>
+								<p><strong>Change of Rain: </strong>{hours[1].chance_of_rain}%</p>
+							</div>
+						</div>
+
+						<div class="hidden sm:flex sm:flex-col sm:gap-1" id="card">
+							<div class="sm:flex sm:flex-col sm:items-center">
+								<p><strong>{hours[2].time}</strong></p>
+								<img
+									class="sm:mx-auto sm:h-10 sm:w-auto"
+									src={hours[2].condition.icon}
+									alt={hours[2].condition.text}
+								/>
+								<p><strong>{hours[2].condition.text}</strong></p>
+							</div>
+
+							<div class="bg-slate-500 sm:mx-auto sm:h-0.5 sm:w-4/5" />
+							<div>
+								<p><strong>Temperature: </strong>{hours[2].temp_c}°C</p>
+								<p><strong>Humidity: </strong>{hours[2].humidity}%</p>
+								<p><strong>Change of Rain: </strong>{hours[2].chance_of_rain}%</p>
+							</div>
+						</div>
+
+						<div
+							class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between"
+						>
+							<a href={leftId} on:click={changeCard(i, objFull, 1)} class="btn-circle btn">❮</a>
+							<a href={rightId} on:click={changeCard(i, objFull, 1)} class="btn-circle btn">❯</a>
+						</div>
+					</div>
+				</div>
+			{/each}
+		</div>
+		<!------mobile screen------>
+		<!-- 		<div class="carousel w-full">
 			{#each obj as hours, i}
 				<div id="slide{i}" class="carousel-item relative w-full">
 					<div class="w-full">
@@ -94,7 +152,7 @@
 					</div>
 				</div>
 			{/each}
-		</div>
+		</div> -->
 	{:else}
 		<p>loading</p>
 	{/if}

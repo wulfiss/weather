@@ -45,14 +45,14 @@
 
 <br />
 
-<div id="mainDaily" class="sm:mx-auto sm:grid sm:grid-cols-3 sm:gap-9">
+<div id="mainDaily" class="">
 	{#if $completeWeather}
 		<!------full screen------>
-		<div class="carousel w-full">
+		<div class="carousel sm:visible">
 			{#each objFull as hours, i}
 				<div id="slide{i}" class="carousel-item relative w-full">
-					<div class="w-full">
-						<div class="hidden sm:flex sm:flex-col sm:gap-1" id="card">
+					<div class="lala sm:mx-auto sm:grid sm:grid-cols-3 sm:grid-rows-1 sm:gap-9">
+						<div class="sm:flex sm:flex-col sm:gap-1" id="card">
 							<div class="sm:flex sm:flex-col sm:items-center">
 								<p><strong>{hours[0].time}</strong></p>
 								<img
@@ -71,7 +71,7 @@
 							</div>
 						</div>
 
-						<div class="hidden sm:flex sm:flex-col sm:gap-1" id="card">
+						<div class="sm:flex sm:flex-col sm:gap-1" id="card">
 							<div class="sm:flex sm:flex-col sm:items-center">
 								<p><strong>{hours[1].time}</strong></p>
 								<img
@@ -90,7 +90,7 @@
 							</div>
 						</div>
 
-						<div class="hidden sm:flex sm:flex-col sm:gap-1" id="card">
+						<div class="sm:flex sm:flex-col sm:gap-1" id="card">
 							<div class="sm:flex sm:flex-col sm:items-center">
 								<p><strong>{hours[2].time}</strong></p>
 								<img
@@ -109,11 +109,13 @@
 							</div>
 						</div>
 
-						<div
-							class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between"
-						>
+						<div class="col-start-2 mx-auto flex w-full -translate-y-1/2 transform justify-around">
 							<a href={leftId} on:click={changeCard(i, objFull, 1)} class="btn-circle btn">❮</a>
-							<a href={rightId} on:click={changeCard(i, objFull, 1)} class="btn-circle btn">❯</a>
+							<a
+								href={rightId}
+								on:click={changeCard(i, objFull, 1)}
+								class="btn-circle btn col-end-11 justify-self-end">❯</a
+							>
 						</div>
 					</div>
 				</div>
@@ -159,6 +161,12 @@
 </div>
 
 <style lang="postcss">
+	.lala {
+		width: 900px;
+	}
+	.lalala {
+		max-width: 900px;
+	}
 	p {
 		@apply text-sm;
 	}

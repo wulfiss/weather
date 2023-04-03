@@ -1,12 +1,6 @@
 <script lang="ts">
 	import { completeWeather } from '../../lib/store';
 
-	/* what do the code below is to set and change the href of the <a> button alike, depending on the length of the 
-		object or arr that it is wanted to show in the carousel, this is not the best implementation so maybe in other 
-		project where I want to use a carousel I use another things */
-	let leftId: string = '#slide';
-	let rightId: string = '#slide';
-
 	let objFull = [];
 	/*  $: means reactivity a little of black magic of svelte, so when 'completeWeather' gets updated it will execute the if again updating the obj with new info */
 	$: if ($completeWeather) {
@@ -17,25 +11,6 @@
 		for (let i = 12; i < 23; i += 4) tempTwo.push($completeWeather.forecast.forecastday[0].hour[i]);
 		objFull.push(tempOne, tempTwo);
 	}
-
-	if ($completeWeather && leftId === '#slide' && rightId === '#slide') {
-		leftId += objFull.length - 1;
-		rightId += 1;
-	}
-
-	function changeCard(activeCardIndex: number, obj, direction: number) {
-		let newActiveCardIndexLeft = activeCardIndex - direction;
-		let newActiveCardIndexRight = activeCardIndex + direction;
-
-		if (newActiveCardIndexLeft < 0) {
-			newActiveCardIndexLeft = obj.length - 1;
-		}
-		if (newActiveCardIndexRight >= obj.length) {
-			newActiveCardIndexRight = 0;
-		}
-		leftId = '#slide' + newActiveCardIndexLeft;
-		rightId = '#slide' + newActiveCardIndexRight;
-	}
 </script>
 
 <br />
@@ -45,8 +20,8 @@
 		<!------full screen------>
 		<div class="carousel w-full">
 			{#each objFull as hours, i}
-				<div id="slide{i}" class="carousel-item relative w-full">
-					<div class="lala sm:mx-auto sm:grid sm:grid-cols-3 sm:grid-rows-1 sm:gap-9">
+				<div id="slideFull{i}" name="slideFull{i}" class="carousel-item relative w-full">
+					<div class="sm:mx-auto sm:grid sm:w-11/12 sm:grid-cols-3 sm:grid-rows-1 sm:gap-9">
 						<div class="sm:flex sm:flex-col sm:gap-1" id="card">
 							<div class="sm:flex sm:flex-col sm:items-center">
 								<p><strong>{hours[0].time}</strong></p>
@@ -93,10 +68,17 @@
 						</div>
 
 						<div class="col-start-2 mx-auto flex w-full -translate-y-1/2 transform justify-around">
-							<a href={leftId} on:click={changeCard(i, objFull, 1)} class="btn-circle btn">❮</a>
-							<a href={rightId} on:click={changeCard(i, objFull, 1)} class="btn-circle btn col-end-11 justify-self-end"
-								>❯</a
-							>
+							{#if i - 1 < 0}
+								<a href="#slideFull{objFull.length - 1}" class="btn-circle btn">❮</a>
+							{:else}
+								<a href="#slideFull{i - 1}" class="btn-circle btn">❮</a>
+							{/if}
+
+							{#if i + 1 >= objFull.length}
+								<a href="#slideFull{0}" class="btn-circle btn">❯</a>
+							{:else}
+								<a href="#slideFull{i + 1}" class="btn-circle btn">❯</a>
+							{/if}
 						</div>
 					</div>
 				</div>
@@ -108,12 +90,6 @@
 </div>
 
 <style lang="postcss">
-	.lala {
-		width: 900px;
-	}
-	.lalala {
-		max-width: 900px;
-	}
 	p {
 		@apply text-sm;
 	}

@@ -2,8 +2,6 @@
 	import { completeWeather } from '../../lib/store';
 </script>
 
-<br />
-
 <div id="mainDaily" class="sm:mx-auto sm:grid sm:grid-cols-3 sm:gap-9">
 	{#if $completeWeather}
 		<!------full screen------>

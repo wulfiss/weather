@@ -9,8 +9,6 @@
 	}
 </script>
 
-<br />
-
 {#if $completeWeather}
 	<div class="carousel w-full sm:hidden">
 		{#each obj as hours, i}

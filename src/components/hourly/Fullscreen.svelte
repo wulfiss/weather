@@ -13,8 +13,6 @@
 	}
 </script>
 
-<br />
-
 <div id="mainDaily" class="hidden sm:block">
 	{#if $completeWeather}
 		<!------full screen------>

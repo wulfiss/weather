@@ -48,81 +48,85 @@
 <div id="mainDaily" class="">
 	{#if $completeWeather}
 		<!------full screen------>
-		<div class="carousel sm:visible">
-			{#each objFull as hours, i}
-				<div id="slide{i}" class="carousel-item relative w-full">
-					<div class="lala sm:mx-auto sm:grid sm:grid-cols-3 sm:grid-rows-1 sm:gap-9">
-						<div class="sm:flex sm:flex-col sm:gap-1" id="card">
-							<div class="sm:flex sm:flex-col sm:items-center">
-								<p><strong>{hours[0].time}</strong></p>
-								<img
-									class="sm:mx-auto sm:h-10 sm:w-auto"
-									src={hours[0].condition.icon}
-									alt={hours[0].condition.text}
-								/>
-								<p><strong>{hours[0].condition.text}</strong></p>
+		<div class="hidden sm:block">
+			<div class="carousel w-full">
+				{#each objFull as hours, i}
+					<div id="slide{i}" class="carousel-item relative w-full">
+						<div class="lala sm:mx-auto sm:grid sm:grid-cols-3 sm:grid-rows-1 sm:gap-9">
+							<div class="sm:flex sm:flex-col sm:gap-1" id="card">
+								<div class="sm:flex sm:flex-col sm:items-center">
+									<p><strong>{hours[0].time}</strong></p>
+									<img
+										class="sm:mx-auto sm:h-10 sm:w-auto"
+										src={hours[0].condition.icon}
+										alt={hours[0].condition.text}
+									/>
+									<p><strong>{hours[0].condition.text}</strong></p>
+								</div>
+
+								<div class="bg-slate-500 sm:mx-auto sm:h-0.5 sm:w-4/5" />
+								<div class="mx-auto grid w-4/5 grid-rows-3 justify-center">
+									<p><strong>Temperature: </strong>{hours[0].temp_c}°C</p>
+									<p><strong>Humidity: </strong>{hours[0].humidity}%</p>
+									<p><strong>Change of Rain: </strong>{hours[0].chance_of_rain}%</p>
+								</div>
 							</div>
 
-							<div class="bg-slate-500 sm:mx-auto sm:h-0.5 sm:w-4/5" />
-							<div>
-								<p><strong>Temperature: </strong>{hours[0].temp_c}°C</p>
-								<p><strong>Humidity: </strong>{hours[0].humidity}%</p>
-								<p><strong>Change of Rain: </strong>{hours[0].chance_of_rain}%</p>
-							</div>
-						</div>
+							<div class="sm:flex sm:flex-col sm:gap-1" id="card">
+								<div class="sm:flex sm:flex-col sm:items-center">
+									<p><strong>{hours[1].time}</strong></p>
+									<img
+										class="sm:mx-auto sm:h-10 sm:w-auto"
+										src={hours[1].condition.icon}
+										alt={hours[1].condition.text}
+									/>
+									<p><strong>{hours[1].condition.text}</strong></p>
+								</div>
 
-						<div class="sm:flex sm:flex-col sm:gap-1" id="card">
-							<div class="sm:flex sm:flex-col sm:items-center">
-								<p><strong>{hours[1].time}</strong></p>
-								<img
-									class="sm:mx-auto sm:h-10 sm:w-auto"
-									src={hours[1].condition.icon}
-									alt={hours[1].condition.text}
-								/>
-								<p><strong>{hours[1].condition.text}</strong></p>
-							</div>
-
-							<div class="bg-slate-500 sm:mx-auto sm:h-0.5 sm:w-4/5" />
-							<div>
-								<p><strong>Temperature: </strong>{hours[1].temp_c}°C</p>
-								<p><strong>Humidity: </strong>{hours[1].humidity}%</p>
-								<p><strong>Change of Rain: </strong>{hours[1].chance_of_rain}%</p>
-							</div>
-						</div>
-
-						<div class="sm:flex sm:flex-col sm:gap-1" id="card">
-							<div class="sm:flex sm:flex-col sm:items-center">
-								<p><strong>{hours[2].time}</strong></p>
-								<img
-									class="sm:mx-auto sm:h-10 sm:w-auto"
-									src={hours[2].condition.icon}
-									alt={hours[2].condition.text}
-								/>
-								<p><strong>{hours[2].condition.text}</strong></p>
+								<div class="bg-slate-500 sm:mx-auto sm:h-0.5 sm:w-4/5" />
+								<div class="mx-auto grid w-4/5 grid-rows-3 justify-center">
+									<p><strong>Temperature: </strong>{hours[1].temp_c}°C</p>
+									<p><strong>Humidity: </strong>{hours[1].humidity}%</p>
+									<p><strong>Change of Rain: </strong>{hours[1].chance_of_rain}%</p>
+								</div>
 							</div>
 
-							<div class="bg-slate-500 sm:mx-auto sm:h-0.5 sm:w-4/5" />
-							<div>
-								<p><strong>Temperature: </strong>{hours[2].temp_c}°C</p>
-								<p><strong>Humidity: </strong>{hours[2].humidity}%</p>
-								<p><strong>Change of Rain: </strong>{hours[2].chance_of_rain}%</p>
-							</div>
-						</div>
+							<div class="sm:flex sm:flex-col sm:gap-1" id="card">
+								<div class="sm:flex sm:flex-col sm:items-center">
+									<p><strong>{hours[2].time}</strong></p>
+									<img
+										class="sm:mx-auto sm:h-10 sm:w-auto"
+										src={hours[2].condition.icon}
+										alt={hours[2].condition.text}
+									/>
+									<p><strong>{hours[2].condition.text}</strong></p>
+								</div>
 
-						<div class="col-start-2 mx-auto flex w-full -translate-y-1/2 transform justify-around">
-							<a href={leftId} on:click={changeCard(i, objFull, 1)} class="btn-circle btn">❮</a>
-							<a
-								href={rightId}
-								on:click={changeCard(i, objFull, 1)}
-								class="btn-circle btn col-end-11 justify-self-end">❯</a
+								<div class="bg-slate-500 sm:mx-auto sm:h-0.5 sm:w-4/5" />
+								<div class="mx-auto grid w-4/5 grid-rows-3 justify-center">
+									<p><strong>Temperature: </strong>{hours[2].temp_c}°C</p>
+									<p><strong>Humidity: </strong>{hours[2].humidity}%</p>
+									<p><strong>Change of Rain: </strong>{hours[2].chance_of_rain}%</p>
+								</div>
+							</div>
+
+							<div
+								class="col-start-2 mx-auto flex w-full -translate-y-1/2 transform justify-around"
 							>
+								<a href={leftId} on:click={changeCard(i, objFull, 1)} class="btn-circle btn">❮</a>
+								<a
+									href={rightId}
+									on:click={changeCard(i, objFull, 1)}
+									class="btn-circle btn col-end-11 justify-self-end">❯</a
+								>
+							</div>
 						</div>
 					</div>
-				</div>
-			{/each}
+				{/each}
+			</div>
 		</div>
 		<!------mobile screen------>
-		<!-- 		<div class="carousel w-full">
+		<div class="carousel w-full sm:hidden">
 			{#each obj as hours, i}
 				<div id="slide{i}" class="carousel-item relative w-full">
 					<div class="w-full">
@@ -154,7 +158,7 @@
 					</div>
 				</div>
 			{/each}
-		</div> -->
+		</div>
 	{:else}
 		<p>loading</p>
 	{/if}

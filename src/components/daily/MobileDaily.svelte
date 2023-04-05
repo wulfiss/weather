@@ -26,7 +26,7 @@
 								<p><strong>{days.date}</strong></p>
 								<img
 									class="sm:mx-auto sm:h-10 sm:w-auto"
-									src="./src/assest/img/{resultArrMS[i]}.svg"
+									src="./static/img/{resultArrMS[i]}.svg"
 									alt={days.day.condition.text}
 								/>
 								<p><strong>{days.day.condition.text}</strong></p>

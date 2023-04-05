@@ -26,7 +26,7 @@
 						<div class="flex w-full flex-col items-center">
 							<p><strong>Temperature: </strong>{hours.temp_c}°C</p>
 							<p><strong>Humidity: </strong>{hours.humidity}%</p>
-							<p><strong>Change of Rain: </strong>{hours.chance_of_rain}%</p>
+							<p><strong>Chance of Rain: </strong>{hours.chance_of_rain}%</p>
 						</div>
 					</div>
 					<div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">

@@ -21,7 +21,7 @@
 								<p><strong>Max Temperature: </strong>{days.day.maxtemp_c}°C</p>
 								<p><strong>Min Temperature: </strong>{days.day.mintemp_c}°C</p>
 								<p><strong>Humidity: </strong>{days.day.avghumidity}%</p>
-								<p><strong>Change of Rain: </strong>{days.day.daily_chance_of_rain}%</p>
+								<p><strong>Chance of Rain: </strong>{days.day.daily_chance_of_rain}%</p>
 							</div>
 						</div>
 						<div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">

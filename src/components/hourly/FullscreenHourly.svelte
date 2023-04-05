@@ -31,7 +31,7 @@
 							<div class="mx-auto grid w-4/5 grid-rows-3 justify-center">
 								<p><strong>Temperature: </strong>{hours[0].temp_c}°C</p>
 								<p><strong>Humidity: </strong>{hours[0].humidity}%</p>
-								<p><strong>Change of Rain: </strong>{hours[0].chance_of_rain}%</p>
+								<p><strong>Chance of Rain: </strong>{hours[0].chance_of_rain}%</p>
 							</div>
 						</div>
 
@@ -46,7 +46,7 @@
 							<div class="mx-auto grid w-4/5 grid-rows-3 justify-center">
 								<p><strong>Temperature: </strong>{hours[1].temp_c}°C</p>
 								<p><strong>Humidity: </strong>{hours[1].humidity}%</p>
-								<p><strong>Change of Rain: </strong>{hours[1].chance_of_rain}%</p>
+								<p><strong>Chance of Rain: </strong>{hours[1].chance_of_rain}%</p>
 							</div>
 						</div>
 
@@ -61,7 +61,7 @@
 							<div class="mx-auto grid w-4/5 grid-rows-3 justify-center">
 								<p><strong>Temperature: </strong>{hours[2].temp_c}°C</p>
 								<p><strong>Humidity: </strong>{hours[2].humidity}%</p>
-								<p><strong>Change of Rain: </strong>{hours[2].chance_of_rain}%</p>
+								<p><strong>Chance of Rain: </strong>{hours[2].chance_of_rain}%</p>
 							</div>
 						</div>
 

@@ -1,21 +1,28 @@
 <script>
 	import { completeWeather } from '../../lib/store';
+	let result;
+
+	//extract the route for the img because the api doesn't provide a code for the icons.
+	$: if ($completeWeather) {
+		const link = $completeWeather.current.condition.icon;
+		const parts = link.split('/');
+		const lastPart = parts[parts.length - 1].split('.');
+		result = parts[parts.length - 2] + '/' + lastPart[0];
+	}
 </script>
 
 {#if $completeWeather}
 	<div class="main grid grid-cols-1 gap-3 sm:mx-auto sm:flex sm:h-80 sm:gap-20">
-		<div
-			class="grid grid-cols-1 justify-items-center sm:flex sm:flex-col sm:items-center sm:justify-around"
-		>
+		<div class="grid grid-cols-1 justify-items-center sm:flex sm:flex-col sm:items-center sm:justify-around">
 			<h1 class="text-xl">
 				<strong
-					>{$completeWeather.location.name}, {$completeWeather.location.region}, {$completeWeather
-						.location.country}</strong
+					>{$completeWeather.location.name}, {$completeWeather.location.region}, {$completeWeather.location
+						.country}</strong
 				>
 			</h1>
 			<img
 				class="h-36 object-fill sm:h-48"
-				src={$completeWeather.current.condition.icon}
+				src="./src/assest/img/{result}.svg"
 				alt="condition imagen {$completeWeather.current.condition.text}"
 			/>
 			<p class="text-xl"><strong>{$completeWeather.current.condition.text}</strong></p>

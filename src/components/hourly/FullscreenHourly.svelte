@@ -11,6 +11,22 @@
 		for (let i = 12; i < 23; i += 4) tempTwo.push($completeWeather.forecast.forecastday[0].hour[i]);
 		objFull.push(tempOne, tempTwo);
 	}
+
+	let resultArrFSH = [];
+
+	//extract the route for the img because the api doesn't provide a code for the icons. '//cdn.weatherapi.com/weather/64x64/night/143.png' ==> night/143, so i can use it as a route for other icons
+	$: if ($completeWeather) {
+		resultArrFSH = [[], []];
+		for (let i = 0; i < objFull.length; i += 1) {
+			for (let j = 0; j < objFull[i].length; j += 1) {
+				const link = objFull[i][j].condition.icon;
+				const parts = link.split('/');
+				const lastPart = parts[parts.length - 1].split('.');
+				let temp = parts[parts.length - 2] + '/' + lastPart[0];
+				resultArrFSH[i].push(temp);
+			}
+		}
+	}
 </script>
 
 <div id="mainDaily" class="hidden sm:block">
@@ -23,7 +39,11 @@
 						<div class="sm:flex sm:flex-col sm:gap-1" id="card">
 							<div class="sm:flex sm:flex-col sm:items-center">
 								<p><strong>{hours[0].time}</strong></p>
-								<img class="sm:mx-auto sm:h-10 sm:w-auto" src={hours[0].condition.icon} alt={hours[0].condition.text} />
+								<img
+									class="sm:mx-auto sm:h-10 sm:w-auto"
+									src="./src/assest/img/{resultArrFSH[i][0]}.svg"
+									alt={hours[0].condition.text}
+								/>
 								<p><strong>{hours[0].condition.text}</strong></p>
 							</div>
 
@@ -38,7 +58,11 @@
 						<div class="sm:flex sm:flex-col sm:gap-1" id="card">
 							<div class="sm:flex sm:flex-col sm:items-center">
 								<p><strong>{hours[1].time}</strong></p>
-								<img class="sm:mx-auto sm:h-10 sm:w-auto" src={hours[1].condition.icon} alt={hours[1].condition.text} />
+								<img
+									class="sm:mx-auto sm:h-10 sm:w-auto"
+									src="./src/assest/img/{resultArrFSH[i][1]}.svg"
+									alt={hours[1].condition.text}
+								/>
 								<p><strong>{hours[1].condition.text}</strong></p>
 							</div>
 
@@ -53,7 +77,11 @@
 						<div class="sm:flex sm:flex-col sm:gap-1" id="card">
 							<div class="sm:flex sm:flex-col sm:items-center">
 								<p><strong>{hours[2].time}</strong></p>
-								<img class="sm:mx-auto sm:h-10 sm:w-auto" src={hours[2].condition.icon} alt={hours[2].condition.text} />
+								<img
+									class="sm:mx-auto sm:h-10 sm:w-auto"
+									src="./src/assest/img/{resultArrFSH[i][2]}.svg"
+									alt={hours[2].condition.text}
+								/>
 								<p><strong>{hours[2].condition.text}</strong></p>
 							</div>
 

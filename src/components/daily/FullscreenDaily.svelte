@@ -1,5 +1,19 @@
 <script lang="ts">
 	import { completeWeather } from '../../lib/store';
+
+	let resultArrFS = [];
+
+	//extract the route for the img because the api doesn't provide a code for the icons.
+	$: if ($completeWeather) {
+		resultArrFS = [];
+		for (let i = 0; i < $completeWeather.forecast.forecastday.length; i += 1) {
+			const link = $completeWeather.forecast.forecastday[i].day.condition.icon;
+			const parts = link.split('/');
+			const lastPart = parts[parts.length - 1].split('.');
+			let temp = parts[parts.length - 2] + '/' + lastPart[0];
+			resultArrFS.push(temp);
+		}
+	}
 </script>
 
 <div id="mainDaily" class="sm:mx-auto sm:grid sm:grid-cols-3 sm:gap-9">
@@ -9,7 +23,11 @@
 			<div class="hidden sm:flex sm:flex-col sm:gap-1" id="card{i}">
 				<div class="sm:flex sm:flex-col sm:items-center">
 					<p><strong>{days.date}</strong></p>
-					<img class="sm:mx-auto sm:h-10 sm:w-auto" src={days.day.condition.icon} alt={days.day.condition.text} />
+					<img
+						class="sm:mx-auto sm:h-10 sm:w-auto"
+						src="./src/assest/img/{resultArrFS[i]}.svg"
+						alt={days.day.condition.text}
+					/>
 					<p><strong>{days.day.condition.text}</strong></p>
 				</div>
 				<div class="bg-slate-500 sm:mx-auto sm:h-0.5 sm:w-4/5" />

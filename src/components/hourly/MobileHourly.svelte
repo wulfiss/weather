@@ -6,6 +6,22 @@
 	$: if ($completeWeather) {
 		obj = [];
 		for (let i = 0; i < 23; i += 4) obj.push($completeWeather.forecast.forecastday[0].hour[i]);
+
+		console.log(obj);
+	}
+
+	let resultArrMSH = [];
+
+	//extract the route for the img because the api doesn't provide a code for the icons.
+	$: if ($completeWeather) {
+		resultArrMSH = [];
+		for (let i = 0; i < obj.length; i += 1) {
+			const link = obj[i].condition.icon;
+			const parts = link.split('/');
+			const lastPart = parts[parts.length - 1].split('.');
+			let temp = parts[parts.length - 2] + '/' + lastPart[0];
+			resultArrMSH.push(temp);
+		}
 	}
 </script>
 
@@ -17,7 +33,11 @@
 					<div class="flex w-full flex-col gap-1" id="card">
 						<div class="flex flex-col items-center">
 							<p><strong>{hours.time}</strong></p>
-							<img class="sm:mx-auto sm:h-10 sm:w-auto" src={hours.condition.icon} alt={hours.condition.text} />
+							<img
+								class="sm:mx-auto sm:h-10 sm:w-auto"
+								src="./src/assest/img/{resultArrMSH[i]}.svg"
+								alt={hours.condition.text}
+							/>
 							<p><strong>{hours.condition.text}</strong></p>
 						</div>
 

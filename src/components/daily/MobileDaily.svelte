@@ -1,5 +1,18 @@
 <script lang="ts">
 	import { completeWeather } from '../../lib/store';
+	let resultArrMS = [];
+
+	//extract the route for the img because the api doesn't provide a code for the icons.
+	$: if ($completeWeather) {
+		resultArrMS = [];
+		for (let i = 0; i < $completeWeather.forecast.forecastday.length; i += 1) {
+			const link = $completeWeather.forecast.forecastday[i].day.condition.icon;
+			const parts = link.split('/');
+			const lastPart = parts[parts.length - 1].split('.');
+			let temp = parts[parts.length - 2] + '/' + lastPart[0];
+			resultArrMS.push(temp);
+		}
+	}
 </script>
 
 <div id="mainDaily" class="sm:mx-auto sm:grid sm:grid-cols-3 sm:gap-9">
@@ -11,7 +24,11 @@
 						<div class="flex w-full flex-col gap-1" id="card">
 							<div class="flex flex-col items-center">
 								<p><strong>{days.date}</strong></p>
-								<img class="sm:mx-auto sm:h-10 sm:w-auto" src={days.day.condition.icon} alt={days.day.condition.text} />
+								<img
+									class="sm:mx-auto sm:h-10 sm:w-auto"
+									src="./src/assest/img/{resultArrMS[i]}.svg"
+									alt={days.day.condition.text}
+								/>
 								<p><strong>{days.day.condition.text}</strong></p>
 							</div>
 

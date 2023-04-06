@@ -1,5 +1,8 @@
 <script>
-	import { completeWeather } from '../../lib/store';
+	import { completeWeather } from '$lib/store';
+	import i from 'img/day/133.svg';
+
+	let lala = i;
 	let result;
 
 	//extract the route for the img because the api doesn't provide a code for the icons.
@@ -10,6 +13,8 @@
 		result = parts[parts.length - 2] + '/' + lastPart[0];
 	}
 </script>
+
+<img src={lala} alt="" srcset="" />
 
 {#if $completeWeather}
 	<div class="main grid grid-cols-1 gap-3 sm:mx-auto sm:flex sm:h-80 sm:gap-20">

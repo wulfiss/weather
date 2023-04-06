@@ -41,7 +41,7 @@
 								<p><strong>{hours[0].time}</strong></p>
 								<img
 									class="sm:mx-auto sm:h-10 sm:w-auto"
-									src="./static/img/{resultArrFSH[i][0]}.svg"
+									src="%sveltekit.assets%/img/{resultArrFSH[i][0]}.svg"
 									alt={hours[0].condition.text}
 								/>
 								<p><strong>{hours[0].condition.text}</strong></p>
@@ -60,7 +60,7 @@
 								<p><strong>{hours[1].time}</strong></p>
 								<img
 									class="sm:mx-auto sm:h-10 sm:w-auto"
-									src="./static/img/{resultArrFSH[i][1]}.svg"
+									src="%sveltekit.assets%/img/{resultArrFSH[i][1]}.svg"
 									alt={hours[1].condition.text}
 								/>
 								<p><strong>{hours[1].condition.text}</strong></p>
@@ -79,7 +79,7 @@
 								<p><strong>{hours[2].time}</strong></p>
 								<img
 									class="sm:mx-auto sm:h-10 sm:w-auto"
-									src="./static/img/{resultArrFSH[i][2]}.svg"
+									src="%sveltekit.assets%/img/{resultArrFSH[i][2]}.svg"
 									alt={hours[2].condition.text}
 								/>
 								<p><strong>{hours[2].condition.text}</strong></p>

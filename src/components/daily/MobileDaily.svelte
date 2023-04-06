@@ -26,7 +26,9 @@
 								<p><strong>{days.date}</strong></p>
 								<img
 									class="sm:mx-auto sm:h-10 sm:w-auto"
-									src="./src/asesst/img/{resultArrMS[i]}.svg"
+									src="https://raw.githubusercontent.com/wulfiss/weather/2b6391824e26d649d347a31fd7e65e4a5e42316a/src/lib/img/{resultArrMS[
+										i
+									]}.svg"
 									alt={days.day.condition.text}
 								/>
 								<p><strong>{days.day.condition.text}</strong></p>

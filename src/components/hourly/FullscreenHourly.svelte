@@ -41,7 +41,9 @@
 								<p><strong>{hours[0].time}</strong></p>
 								<img
 									class="sm:mx-auto sm:h-10 sm:w-auto"
-									src="./src/asesst/img/{resultArrFSH[i][0]}.svg"
+									src="https://raw.githubusercontent.com/wulfiss/weather/2b6391824e26d649d347a31fd7e65e4a5e42316a/src/lib/img/{resultArrFSH[
+										i
+									][0]}.svg"
 									alt={hours[0].condition.text}
 								/>
 								<p><strong>{hours[0].condition.text}</strong></p>
@@ -60,7 +62,9 @@
 								<p><strong>{hours[1].time}</strong></p>
 								<img
 									class="sm:mx-auto sm:h-10 sm:w-auto"
-									src="./src/asesst/img/{resultArrFSH[i][1]}.svg"
+									src="https://raw.githubusercontent.com/wulfiss/weather/2b6391824e26d649d347a31fd7e65e4a5e42316a/src/lib/img/{resultArrFSH[
+										i
+									][1]}.svg"
 									alt={hours[1].condition.text}
 								/>
 								<p><strong>{hours[1].condition.text}</strong></p>
@@ -79,7 +83,9 @@
 								<p><strong>{hours[2].time}</strong></p>
 								<img
 									class="sm:mx-auto sm:h-10 sm:w-auto"
-									src="./src/asesst/img/{resultArrFSH[i][2]}.svg"
+									src="https://raw.githubusercontent.com/wulfiss/weather/2b6391824e26d649d347a31fd7e65e4a5e42316a/src/lib/img/{resultArrFSH[
+										i
+									][2]}.svg"
 									alt={hours[2].condition.text}
 								/>
 								<p><strong>{hours[2].condition.text}</strong></p>

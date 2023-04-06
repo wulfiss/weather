@@ -1,8 +1,6 @@
 <script>
 	import { completeWeather } from '$lib/store';
-	import i from 'img/day/133.svg';
 
-	let lala = i;
 	let result;
 
 	//extract the route for the img because the api doesn't provide a code for the icons.
@@ -13,8 +11,6 @@
 		result = parts[parts.length - 2] + '/' + lastPart[0];
 	}
 </script>
-
-<img src={lala} alt="" srcset="" />
 
 {#if $completeWeather}
 	<div class="main grid grid-cols-1 gap-3 sm:mx-auto sm:flex sm:h-80 sm:gap-20">
@@ -27,7 +23,7 @@
 			</h1>
 			<img
 				class="h-36 object-fill sm:h-48"
-				src="./src/asesst/img/{result}.svg"
+				src="https://raw.githubusercontent.com/wulfiss/weather/2b6391824e26d649d347a31fd7e65e4a5e42316a/src/lib/img/{result}.svg"
 				alt="condition imagen {$completeWeather.current.condition.text}"
 			/>
 			<p class="text-xl"><strong>{$completeWeather.current.condition.text}</strong></p>

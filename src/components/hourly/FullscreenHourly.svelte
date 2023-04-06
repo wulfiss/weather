@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { completeWeather } from '../../lib/store';
+	import svg from '$lib/svgStore';
 
 	let objFull = [];
 	/*  $: means reactivity a little of black magic of svelte, so when 'completeWeather' gets updated it will execute the if again updating the obj with new info */
@@ -22,8 +23,10 @@
 				const link = objFull[i][j].condition.icon;
 				const parts = link.split('/');
 				const lastPart = parts[parts.length - 1].split('.');
-				let temp = parts[parts.length - 2] + '/' + lastPart[0];
-				resultArrFSH[i].push(temp);
+				let tempA = parts[parts.length - 2];
+				let tempB = lastPart[0];
+				let tempC = [tempA, tempB];
+				resultArrFSH[i].push(tempC);
 			}
 		}
 	}
@@ -41,9 +44,7 @@
 								<p><strong>{hours[0].time}</strong></p>
 								<img
 									class="sm:mx-auto sm:h-10 sm:w-auto"
-									src="https://raw.githubusercontent.com/wulfiss/weather/2b6391824e26d649d347a31fd7e65e4a5e42316a/src/lib/img/{resultArrFSH[
-										i
-									][0]}.svg"
+									src={$svg[resultArrFSH[i][0][0]][resultArrFSH[i][0][1]]}
 									alt={hours[0].condition.text}
 								/>
 								<p><strong>{hours[0].condition.text}</strong></p>
@@ -62,9 +63,7 @@
 								<p><strong>{hours[1].time}</strong></p>
 								<img
 									class="sm:mx-auto sm:h-10 sm:w-auto"
-									src="https://raw.githubusercontent.com/wulfiss/weather/2b6391824e26d649d347a31fd7e65e4a5e42316a/src/lib/img/{resultArrFSH[
-										i
-									][1]}.svg"
+									src={$svg[resultArrFSH[i][1][0]][resultArrFSH[i][1][1]]}
 									alt={hours[1].condition.text}
 								/>
 								<p><strong>{hours[1].condition.text}</strong></p>
@@ -83,9 +82,7 @@
 								<p><strong>{hours[2].time}</strong></p>
 								<img
 									class="sm:mx-auto sm:h-10 sm:w-auto"
-									src="https://raw.githubusercontent.com/wulfiss/weather/2b6391824e26d649d347a31fd7e65e4a5e42316a/src/lib/img/{resultArrFSH[
-										i
-									][2]}.svg"
+									src={$svg[resultArrFSH[i][2][0]][resultArrFSH[i][2][1]]}
 									alt={hours[2].condition.text}
 								/>
 								<p><strong>{hours[2].condition.text}</strong></p>

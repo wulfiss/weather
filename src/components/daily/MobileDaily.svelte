@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { completeWeather } from '../../lib/store';
+	import svg from '$lib/svgStore';
 	let resultArrMS = [];
 
 	//extract the route for the img because the api doesn't provide a code for the icons.
@@ -9,8 +10,10 @@
 			const link = $completeWeather.forecast.forecastday[i].day.condition.icon;
 			const parts = link.split('/');
 			const lastPart = parts[parts.length - 1].split('.');
-			let temp = parts[parts.length - 2] + '/' + lastPart[0];
-			resultArrMS.push(temp);
+			let tempA = parts[parts.length - 2];
+			let tempB = lastPart[0];
+			let tempC = [tempA, tempB];
+			resultArrMS.push(tempC);
 		}
 	}
 </script>
@@ -26,9 +29,7 @@
 								<p><strong>{days.date}</strong></p>
 								<img
 									class="sm:mx-auto sm:h-10 sm:w-auto"
-									src="https://raw.githubusercontent.com/wulfiss/weather/2b6391824e26d649d347a31fd7e65e4a5e42316a/src/lib/img/{resultArrMS[
-										i
-									]}.svg"
+									src={$svg[resultArrMS[i][0]][resultArrMS[i][1]]}
 									alt={days.day.condition.text}
 								/>
 								<p><strong>{days.day.condition.text}</strong></p>

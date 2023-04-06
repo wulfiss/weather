@@ -1,13 +1,12 @@
 <script lang="ts">
 	import { completeWeather } from '../../lib/store';
+	import svg from '$lib/svgStore';
 
 	let obj = [];
 	/*  $: means reactivity a little of black magic of svelte, so when 'completeWeather' gets updated it will execute the if again updating the obj with new info */
 	$: if ($completeWeather) {
 		obj = [];
 		for (let i = 0; i < 23; i += 4) obj.push($completeWeather.forecast.forecastday[0].hour[i]);
-
-		console.log(obj);
 	}
 
 	let resultArrMSH = [];
@@ -19,9 +18,12 @@
 			const link = obj[i].condition.icon;
 			const parts = link.split('/');
 			const lastPart = parts[parts.length - 1].split('.');
-			let temp = parts[parts.length - 2] + '/' + lastPart[0];
-			resultArrMSH.push(temp);
+			let tempA = parts[parts.length - 2];
+			let tempB = lastPart[0];
+			let tempC = [tempA, tempB];
+			resultArrMSH.push(tempC);
 		}
+		console.log(resultArrMSH);
 	}
 </script>
 
@@ -35,9 +37,7 @@
 							<p><strong>{hours.time}</strong></p>
 							<img
 								class="sm:mx-auto sm:h-10 sm:w-auto"
-								src="https://raw.githubusercontent.com/wulfiss/weather/2b6391824e26d649d347a31fd7e65e4a5e42316a/src/lib/img/{resultArrMSH[
-									i
-								]}.svg"
+								src={$svg[resultArrMSH[i][0]][resultArrMSH[i][1]]}
 								alt={hours.condition.text}
 							/>
 							<p><strong>{hours.condition.text}</strong></p>

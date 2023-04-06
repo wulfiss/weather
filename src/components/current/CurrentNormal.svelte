@@ -22,7 +22,7 @@
 			</h1>
 			<img
 				class="h-36 object-fill sm:h-48"
-				src="%sveltekit.assets%/img/{result}.svg"
+				src="./src/asesst/img/{result}.svg"
 				alt="condition imagen {$completeWeather.current.condition.text}"
 			/>
 			<p class="text-xl"><strong>{$completeWeather.current.condition.text}</strong></p>

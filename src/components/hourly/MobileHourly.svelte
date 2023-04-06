@@ -35,7 +35,7 @@
 							<p><strong>{hours.time}</strong></p>
 							<img
 								class="sm:mx-auto sm:h-10 sm:w-auto"
-								src="%sveltekit.assets%/img/{resultArrMSH[i]}.svg"
+								src="./src/asesst/img/{resultArrMSH[i]}.svg"
 								alt={hours.condition.text}
 							/>
 							<p><strong>{hours.condition.text}</strong></p>

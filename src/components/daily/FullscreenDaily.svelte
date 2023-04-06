@@ -25,7 +25,7 @@
 					<p><strong>{days.date}</strong></p>
 					<img
 						class="sm:mx-auto sm:h-10 sm:w-auto"
-						src="%sveltekit.assets%/img/{resultArrFS[i]}.svg"
+						src="./src/asesst/img/{resultArrFS[i]}.svg"
 						alt={days.day.condition.text}
 					/>
 					<p><strong>{days.day.condition.text}</strong></p>

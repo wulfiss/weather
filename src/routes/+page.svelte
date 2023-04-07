@@ -2,6 +2,7 @@
 	import CurrentNormal from '../components/current/CurrentNormal.svelte';
 	import DailyMain from '../components/daily/DailyMain.svelte';
 	import HourlyMain from '../components/hourly/HourlyMain.svelte';
+	import Switch from '../components/Switch/Switch.svelte';
 	import { onMount } from 'svelte';
 	import { getCurrentWeather } from '$lib/getData';
 	import { units } from '$lib/store';
@@ -20,7 +21,7 @@
 </script>
 
 <svelte:component this={CurrentNormal} />
-
+<Switch />
 <div class="btn-group flex h-16 w-full items-center justify-center">
 	<button
 		class={current === 'daily' ? 'selected' : 'unSelected'}

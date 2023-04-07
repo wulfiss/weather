@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { completeWeather } from '../../lib/store';
+	import { completeWeather, units } from '../../lib/store';
 	import svg from '$lib/svgStore';
 
 	let obj = [];
@@ -24,6 +24,19 @@
 			resultArrMSH.push(tempC);
 		}
 	}
+
+	let temperature: string;
+	let tempUnit: string;
+
+	$: if ($units.unit === 'metric') {
+		temperature = 'temp_c';
+		tempUnit = '°C';
+	}
+
+	$: if ($units.unit === 'imperial') {
+		temperature = 'temp_f';
+		tempUnit = '°F';
+	}
 </script>
 
 {#if $completeWeather}
@@ -45,7 +58,7 @@
 						<div class="mx-auto h-0.5 w-3/5 bg-slate-500 sm:w-4/5" />
 
 						<div class="flex w-full flex-col items-center">
-							<p><strong>Temperature: </strong>{hours.temp_c}°C</p>
+							<p><strong>Temperature: </strong>{hours[temperature]} {tempUnit}</p>
 							<p><strong>Humidity: </strong>{hours.humidity}%</p>
 							<p><strong>Chance of Rain: </strong>{hours.chance_of_rain}%</p>
 						</div>

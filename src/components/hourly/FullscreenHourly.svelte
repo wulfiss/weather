@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { completeWeather } from '../../lib/store';
+	import { completeWeather, units } from '../../lib/store';
 	import svg from '$lib/svgStore';
 
 	let objFull = [];
@@ -30,6 +30,19 @@
 			}
 		}
 	}
+
+	let temperature: string;
+	let tempUnit: string;
+
+	$: if ($units.unit === 'metric') {
+		temperature = 'temp_c';
+		tempUnit = '°C';
+	}
+
+	$: if ($units.unit === 'imperial') {
+		temperature = 'temp_f';
+		tempUnit = '°F';
+	}
 </script>
 
 <div id="mainDaily" class="hidden sm:block">
@@ -52,7 +65,7 @@
 
 							<div class="bg-slate-500 sm:mx-auto sm:h-0.5 sm:w-4/5" />
 							<div class="mx-auto grid w-4/5 grid-rows-3 justify-center">
-								<p><strong>Temperature: </strong>{hours[0].temp_c}°C</p>
+								<p><strong>Temperature: </strong>{hours[0][temperature]} {tempUnit}</p>
 								<p><strong>Humidity: </strong>{hours[0].humidity}%</p>
 								<p><strong>Chance of Rain: </strong>{hours[0].chance_of_rain}%</p>
 							</div>
@@ -71,7 +84,7 @@
 
 							<div class="bg-slate-500 sm:mx-auto sm:h-0.5 sm:w-4/5" />
 							<div class="mx-auto grid w-4/5 grid-rows-3 justify-center">
-								<p><strong>Temperature: </strong>{hours[1].temp_c}°C</p>
+								<p><strong>Temperature: </strong>{hours[1][temperature]} {tempUnit}</p>
 								<p><strong>Humidity: </strong>{hours[1].humidity}%</p>
 								<p><strong>Chance of Rain: </strong>{hours[1].chance_of_rain}%</p>
 							</div>
@@ -90,7 +103,7 @@
 
 							<div class="bg-slate-500 sm:mx-auto sm:h-0.5 sm:w-4/5" />
 							<div class="mx-auto grid w-4/5 grid-rows-3 justify-center">
-								<p><strong>Temperature: </strong>{hours[2].temp_c}°C</p>
+								<p><strong>Temperature: </strong>{hours[2][temperature]} {tempUnit}</p>
 								<p><strong>Humidity: </strong>{hours[2].humidity}%</p>
 								<p><strong>Chance of Rain: </strong>{hours[2].chance_of_rain}%</p>
 							</div>

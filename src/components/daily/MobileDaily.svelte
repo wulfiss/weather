@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { completeWeather } from '../../lib/store';
+	import { completeWeather, units } from '../../lib/store';
 	import svg from '$lib/svgStore';
 	let resultArrMS = [];
 
@@ -15,6 +15,22 @@
 			let tempC = [tempA, tempB];
 			resultArrMS.push(tempC);
 		}
+	}
+
+	let temperatureMax: string;
+	let temperatureMin: string;
+	let tempUnit: string;
+
+	$: if ($units.unit === 'metric') {
+		temperatureMax = 'maxtemp_c';
+		temperatureMin = 'mintemp_c';
+		tempUnit = '°C';
+	}
+
+	$: if ($units.unit === 'imperial') {
+		temperatureMax = 'maxtemp_f';
+		temperatureMin = 'mintemp_f';
+		tempUnit = '°F';
 	}
 </script>
 
@@ -38,8 +54,8 @@
 							<div class="mx-auto h-0.5 w-3/5 bg-slate-500 sm:w-4/5" />
 
 							<div class="flex w-full flex-col items-center">
-								<p><strong>Max Temperature: </strong>{days.day.maxtemp_c}°C</p>
-								<p><strong>Min Temperature: </strong>{days.day.mintemp_c}°C</p>
+								<p><strong>Max Temperature: </strong>{days.day[temperatureMax]} {tempUnit}</p>
+								<p><strong>Min Temperature: </strong>{days.day[temperatureMin]} {tempUnit}</p>
 								<p><strong>Humidity: </strong>{days.day.avghumidity}%</p>
 								<p><strong>Chance of Rain: </strong>{days.day.daily_chance_of_rain}%</p>
 							</div>

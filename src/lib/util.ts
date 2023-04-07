@@ -1,4 +1,4 @@
-const setLocaStorage = (el: string, nameEl: string): void => {
+const setLocalStorage = (el: string, nameEl: string): void => {
 	localStorage.setItem(nameEl, JSON.stringify(el));
 };
 
@@ -6,42 +6,64 @@ const checkElExistLocalStorageReturnIt = (elName: string, elValue: string): stri
 	let item: string | null = JSON.parse(localStorage.getItem(elName));
 	if (!item) {
 		item = elValue;
-		setLocaStorage(item, elName);
+		setLocalStorage(item, elName);
 		return item;
 	}
 	return item;
 };
 
-const updateStoreWithLocalStorage = (name, store) => {
-	const getLocalValue = JSON.parse(localStorage.getItem(name));
-	return store.set(getLocalValue);
-};
+function formatDate(dateString: string) {
+	// Replace space with T separator and create Date object
+	const date: Date = new Date(dateString.replace(' ', 'T'));
+
+	// Define options objects for 12-hour and 24-hour clock formats
+	//explanation for the next line is down below
+	const options12h: Intl.DateTimeFormatOptions = {
+		weekday: 'short',
+		month: 'short',
+		day: 'numeric',
+		hour: 'numeric',
+		minute: 'numeric',
+		hour12: true
+	};
+	const options24h: Intl.DateTimeFormatOptions = {
+		weekday: 'short',
+		month: 'short',
+		day: 'numeric',
+		hour: 'numeric',
+		minute: 'numeric',
+		hour12: false
+	};
+
+	// Format date string in 12-hour clock format with 'a.m.' or 'p.m.'
+	const formattedDate12h: string = date.toLocaleDateString('en-US', options12h).replace(' ', ' ');
+
+	// Format date string in 24-hour clock format
+	const formattedDate24h: string = date.toLocaleDateString('en-US', options24h) + ' hs';
+
+	// Return array with formatted date strings
+	return [formattedDate12h, formattedDate24h];
+}
 
 const validateInput = (inputText: string): boolean => {
 	const regex = /^[a-zA-Z]{3,}([ ,]*[a-zA-Z]+)*$/; //for this documentation look down
 	return regex.test(inputText); // return true or false depending if the input complies with the regex
 };
 
-export { setLocaStorage, checkElExistLocalStorageReturnIt, updateStoreWithLocalStorage, validateInput };
+const dateParts = (dateFormated: string, opt: string): string | undefined => {
+	const parts: string[] = dateFormated.split(' ');
 
-/* const Arr = () => {
-	const arrBooks = JSON.parse(localStorage.getItem('arrBooks'));
-	return {
-		arrBooks
-	};
+	if (opt === 'time') {
+		return `${parts[parts.length - 2]} ${parts[parts.length - 1]}`;
+	}
+
+	if (opt === 'date') {
+		const removeLastComma: string = parts[parts.length - 3].slice(0, -1); //remove last comma 'Fri, Apr 13,' => Fri, Apr 13'
+		return `${parts[parts.length - 5]} ${parts[parts.length - 4]} ${removeLastComma}`;
+	}
 };
 
-const arrToJson = function checkIfTheArrExistInTheLocalStorageAndPushNewBookIfNotCreateANewOne(book) {
-	let { arrBooks } = Arr();
-
-	if (!arrBooks) {
-		arrBooks = [];
-	}
-	arrBooks.push(book);
-	localStorage.clear();
-
-	return localStorage.setItem('arrBooks', JSON.stringify(arrBooks));
-}; */
+export { setLocalStorage, checkElExistLocalStorageReturnIt, formatDate, validateInput, dateParts };
 
 /* const regex = /^[a-zA-Z]{3,}([ ,]*[a-zA-Z]+)*$/;
 
@@ -62,3 +84,9 @@ Pattern Breakdown
 ([ ,]*[a-zA-Z]+) - Match zero or more occurrences of a space or comma (including none) followed by one or more alphabets.
 * - Match zero or more occurrences of the previous group.
 $ - Match the end of the string. */
+
+/* options12h: Intl.DateTimeFormatOptions
+In TypeScript, you can specify the type of a constant using the const <name>: <type> syntax.
+ To specify the type of options12h, we can use the Intl.DateTimeFormatOptions interface provided by TypeScript,}
+  which describes the shape of the options object expected by the toLocaleDateString() method.
+ */

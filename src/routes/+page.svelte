@@ -3,10 +3,16 @@
 	import DailyMain from '../components/daily/DailyMain.svelte';
 	import HourlyMain from '../components/hourly/HourlyMain.svelte';
 	import { onMount } from 'svelte';
-	import { getCurrentWeather } from '../lib/getData';
+	import { getCurrentWeather } from '$lib/getData';
+	import { units } from '$lib/store';
+	import { checkElExistLocalStorageReturnIt, validateInput } from '$lib/util';
 
 	onMount(() => {
-		getCurrentWeather();
+		let city: string = checkElExistLocalStorageReturnIt('location', 'Reconquista, Argentina');
+		if (!validateInput(city)) {
+			city = 'Reconquista';
+		}
+		getCurrentWeather(city);
 	});
 
 	let current = 'daily';

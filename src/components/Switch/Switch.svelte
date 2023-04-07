@@ -6,12 +6,10 @@
 	$: if (unit) {
 		let temp = { unit: 'metric' };
 		units.set(temp);
-		console.log('m', $units);
 	}
 	$: if (!unit) {
 		let temp = { unit: 'imperial' };
 		units.set(temp);
-		console.log('i', $units);
 	}
 </script>
 

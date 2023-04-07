@@ -23,7 +23,6 @@
 			let tempC = [tempA, tempB];
 			resultArrMSH.push(tempC);
 		}
-		console.log(resultArrMSH);
 	}
 </script>
 

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { completeWeather, units } from '../../lib/store';
 	import svg from '$lib/svgStore';
+	import { formatDate, dateParts } from '$lib/util';
 
 	let obj = [];
 	/*  $: means reactivity a little of black magic of svelte, so when 'completeWeather' gets updated it will execute the if again updating the obj with new info */
@@ -27,15 +28,18 @@
 
 	let temperature: string;
 	let tempUnit: string;
+	let dateHM: number;
 
 	$: if ($units.unit === 'metric') {
 		temperature = 'temp_c';
 		tempUnit = '°C';
+		dateHM = 1;
 	}
 
 	$: if ($units.unit === 'imperial') {
 		temperature = 'temp_f';
 		tempUnit = '°F';
+		dateHM = 0;
 	}
 </script>
 
@@ -46,7 +50,7 @@
 				<div class="w-full">
 					<div class="flex w-full flex-col gap-1" id="card">
 						<div class="flex flex-col items-center">
-							<p><strong>{hours.time}</strong></p>
+							<p><strong>{dateParts(formatDate(hours.time)[dateHM], 'time')}</strong></p>
 							<img
 								class="sm:mx-auto sm:h-10 sm:w-auto"
 								src={$svg[resultArrMSH[i][0]][resultArrMSH[i][1]]}

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { completeWeather, units } from '../../lib/store';
 	import svg from '$lib/svgStore';
+	import { formatDate, dateParts } from '$lib/util';
 
 	let resultArrFS = [];
 
@@ -21,17 +22,20 @@
 	let temperatureMax: string;
 	let temperatureMin: string;
 	let tempUnit: string;
+	let dateDF: number;
 
 	$: if ($units.unit === 'metric') {
 		temperatureMax = 'maxtemp_c';
 		temperatureMin = 'mintemp_c';
 		tempUnit = '°C';
+		dateDF = 1;
 	}
 
 	$: if ($units.unit === 'imperial') {
 		temperatureMax = 'maxtemp_f';
 		temperatureMin = 'mintemp_f';
 		tempUnit = '°F';
+		dateDF = 0;
 	}
 </script>
 
@@ -41,7 +45,7 @@
 		{#each $completeWeather.forecast.forecastday as days, i}
 			<div class="hidden sm:flex sm:flex-col sm:gap-1" id="card{i}">
 				<div class="sm:flex sm:flex-col sm:items-center">
-					<p><strong>{days.date}</strong></p>
+					<p><strong>{dateParts(formatDate(days.date)[dateDF], 'date')}</strong></p>
 					<img
 						class="sm:mx-auto sm:h-10 sm:w-auto"
 						src={$svg[resultArrFS[i][0]][resultArrFS[i][1]]}

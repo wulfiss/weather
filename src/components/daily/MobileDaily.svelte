@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { completeWeather, units } from '../../lib/store';
 	import svg from '$lib/svgStore';
+	import { formatDate, dateParts } from '$lib/util';
+
 	let resultArrMS = [];
 
 	//extract the route for the img because the api doesn't provide a code for the icons.
@@ -20,17 +22,20 @@
 	let temperatureMax: string;
 	let temperatureMin: string;
 	let tempUnit: string;
+	let dateDM: number;
 
 	$: if ($units.unit === 'metric') {
 		temperatureMax = 'maxtemp_c';
 		temperatureMin = 'mintemp_c';
 		tempUnit = '°C';
+		dateDM = 1;
 	}
 
 	$: if ($units.unit === 'imperial') {
 		temperatureMax = 'maxtemp_f';
 		temperatureMin = 'mintemp_f';
 		tempUnit = '°F';
+		dateDM = 0;
 	}
 </script>
 
@@ -42,7 +47,7 @@
 					<div class="w-full">
 						<div class="flex w-full flex-col gap-1" id="card">
 							<div class="flex flex-col items-center">
-								<p><strong>{days.date}</strong></p>
+								<p><strong>{dateParts(formatDate(days.date)[dateDM], 'date')}</strong></p>
 								<img
 									class="sm:mx-auto sm:h-10 sm:w-auto"
 									src={$svg[resultArrMS[i][0]][resultArrMS[i][1]]}

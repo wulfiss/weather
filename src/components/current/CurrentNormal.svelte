@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { completeWeather, units } from '$lib/store';
 	import svg from '$lib/svgStore';
+	import { formatDate } from '$lib/util';
 
 	let resultOne;
 	let resultTwo;
@@ -18,6 +19,7 @@
 	let windVelocity: string;
 	let tempUnit: string;
 	let velocityUnit: string;
+	let date: number;
 
 	$: if ($units.unit === 'metric') {
 		temperature = 'temp_c';
@@ -25,6 +27,7 @@
 		windVelocity = 'wind_kph';
 		tempUnit = '°C';
 		velocityUnit = 'Kph';
+		date = 1;
 	}
 
 	$: if ($units.unit === 'imperial') {
@@ -33,6 +36,7 @@
 		windVelocity = 'wind_mph';
 		tempUnit = '°F';
 		velocityUnit = 'Mph';
+		date = 0;
 	}
 </script>
 
@@ -60,7 +64,7 @@
 			<p class="text-lg"><strong>Wind direction: </strong>{$completeWeather.current.wind_dir}</p>
 			<p class="text-lg"><strong>Pressure: </strong>{$completeWeather.current.pressure_mb} hPa</p>
 			<br />
-			<p class="text-base"><strong>Last Update: </strong>{$completeWeather.current.last_updated}</p>
+			<p class="text-base"><strong>Last Update: </strong>{formatDate($completeWeather.current.last_updated)[date]}</p>
 		</div>
 	</div>
 {:else}

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getCurrentWeather } from '../../lib/getData';
-	import { setLocaStorage, validateInput } from '$lib/util';
+	import { setLocalStorage, validateInput } from '$lib/util';
 
 	let cityName: string;
 	let valid: boolean = true;
@@ -12,7 +12,7 @@
 			return false;
 		}
 		getCurrentWeather(cityName);
-		setLocaStorage(cityName, 'location');
+		setLocalStorage(cityName, 'location');
 		cityName = '';
 		valid = true;
 	};

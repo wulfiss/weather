@@ -9,7 +9,13 @@
 	import { checkElExistLocalStorageReturnIt, validateInput } from '$lib/util';
 
 	onMount(() => {
+		let unitCheck: string = checkElExistLocalStorageReturnIt('unit', 'metric');
+		let temp = { unit: unitCheck };
+		units.set(temp);
+
 		let city: string = checkElExistLocalStorageReturnIt('location', 'Reconquista, Argentina');
+
+		console.log($units);
 		if (!validateInput(city)) {
 			city = 'Reconquista';
 		}

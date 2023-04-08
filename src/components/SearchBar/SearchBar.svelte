@@ -20,7 +20,7 @@
 	};
 </script>
 
-<form id="findCity" action="" class="flex h-20 w-full flex-row items-center justify-center gap-1 sm:h-full sm:gap-2">
+<form id="findCity" action="" class="flex h-16 w-full flex-row items-center justify-center gap-1 sm:h-full sm:gap-2">
 	{#if valid}
 		<input
 			type="text"

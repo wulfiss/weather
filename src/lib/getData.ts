@@ -6,6 +6,10 @@ const getCurrentWeather = async (city = 'reconquista', key: string) => {
 			`https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${city}&days=3&aqi=no&alerts=no`,
 			{ mode: 'cors' }
 		);
+
+		if (!response.ok) {
+			throw new Error('Error to load data from page');
+		}
 		const data = await response.json();
 		completeWeather.set(await data);
 		return data;

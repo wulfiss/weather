@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { completeWeather } from '../../lib/store';
+	import { completeWeather, units } from '../../lib/store';
 	import svg from '$lib/svgStore';
+	import { formatDate, dateParts } from '$lib/util';
 
 	let resultArrFS = [];
 
@@ -17,6 +18,25 @@
 			resultArrFS.push(tempC);
 		}
 	}
+
+	let temperatureMax: string;
+	let temperatureMin: string;
+	let tempUnit: string;
+	let dateDF: number;
+
+	$: if ($units.unit === 'metric') {
+		temperatureMax = 'maxtemp_c';
+		temperatureMin = 'mintemp_c';
+		tempUnit = '°C';
+		dateDF = 1;
+	}
+
+	$: if ($units.unit === 'imperial') {
+		temperatureMax = 'maxtemp_f';
+		temperatureMin = 'mintemp_f';
+		tempUnit = '°F';
+		dateDF = 0;
+	}
 </script>
 
 <div id="mainDaily" class="sm:mx-auto sm:grid sm:grid-cols-3 sm:gap-9">
@@ -24,8 +44,8 @@
 		<!------full screen------>
 		{#each $completeWeather.forecast.forecastday as days, i}
 			<div class="hidden sm:flex sm:flex-col sm:gap-1" id="card{i}">
-				<div class="sm:flex sm:flex-col sm:items-center">
-					<p><strong>{days.date}</strong></p>
+				<div class="sm:flex sm:flex-col sm:items-center gap-3">
+					<p><strong>{dateParts(formatDate(days.date)[dateDF], 'date')}</strong></p>
 					<img
 						class="sm:mx-auto sm:h-10 sm:w-auto"
 						src={$svg[resultArrFS[i][0]][resultArrFS[i][1]]}
@@ -35,8 +55,8 @@
 				</div>
 				<div class="bg-slate-500 sm:mx-auto sm:h-0.5 sm:w-4/5" />
 				<div>
-					<p><strong>Max Temperature: </strong>{days.day.maxtemp_c}°C</p>
-					<p><strong>Min Temperature: </strong>{days.day.mintemp_c}°C</p>
+					<p><strong>Max Temperature: </strong>{days.day[temperatureMax]} {tempUnit}</p>
+					<p><strong>Min Temperature: </strong>{days.day[temperatureMin]} {tempUnit}</p>
 					<p><strong>Humidity: </strong>{days.day.avghumidity}%</p>
 					<p><strong>Chance of Rain: </strong>{days.day.daily_chance_of_rain}%</p>
 				</div>

@@ -6,13 +6,19 @@
 	import { getCurrentWeather } from '$lib/getData';
 	import { units } from '$lib/store';
 	import { checkElExistLocalStorageReturnIt, validateInput } from '$lib/util';
+	export let data;
 
 	onMount(() => {
+		let unitCheck: string = checkElExistLocalStorageReturnIt('unit', 'metric');
+		let temp = { unit: unitCheck };
+		units.set(temp);
+
 		let city: string = checkElExistLocalStorageReturnIt('location', 'Reconquista, Argentina');
+
 		if (!validateInput(city)) {
 			city = 'Reconquista';
 		}
-		getCurrentWeather(city);
+		getCurrentWeather(city, data.API_KEY);
 	});
 
 	let current = 'daily';

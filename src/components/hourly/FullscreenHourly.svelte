@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { completeWeather } from '../../lib/store';
+	import { completeWeather, units } from '../../lib/store';
 	import svg from '$lib/svgStore';
+	import { formatDate, dateParts } from '$lib/util';
 
 	let objFull = [];
 	/*  $: means reactivity a little of black magic of svelte, so when 'completeWeather' gets updated it will execute the if again updating the obj with new info */
@@ -30,6 +31,22 @@
 			}
 		}
 	}
+
+	let temperature: string;
+	let tempUnit: string;
+	let dateHF: number;
+
+	$: if ($units.unit === 'metric') {
+		temperature = 'temp_c';
+		tempUnit = '°C';
+		dateHF = 1;
+	}
+
+	$: if ($units.unit === 'imperial') {
+		temperature = 'temp_f';
+		tempUnit = '°F';
+		dateHF = 0;
+	}
 </script>
 
 <div id="mainDaily" class="hidden sm:block">
@@ -40,8 +57,8 @@
 				<div id="slideFull{i}" name="slideFull{i}" class="carousel-item relative w-full">
 					<div class="sm:mx-auto sm:grid sm:w-11/12 sm:grid-cols-3 sm:grid-rows-1 sm:gap-9">
 						<div class="sm:flex sm:flex-col sm:gap-1" id="card">
-							<div class="sm:flex sm:flex-col sm:items-center">
-								<p><strong>{hours[0].time}</strong></p>
+							<div class="sm:flex sm:flex-col sm:items-center gap-3">
+								<p><strong>{dateParts(formatDate(hours[0].time)[dateHF], 'time')}</strong></p>
 								<img
 									class="sm:mx-auto sm:h-10 sm:w-auto"
 									src={$svg[resultArrFSH[i][0][0]][resultArrFSH[i][0][1]]}
@@ -52,15 +69,15 @@
 
 							<div class="bg-slate-500 sm:mx-auto sm:h-0.5 sm:w-4/5" />
 							<div class="mx-auto grid w-4/5 grid-rows-3 justify-center">
-								<p><strong>Temperature: </strong>{hours[0].temp_c}°C</p>
+								<p><strong>Temperature: </strong>{hours[0][temperature]} {tempUnit}</p>
 								<p><strong>Humidity: </strong>{hours[0].humidity}%</p>
 								<p><strong>Chance of Rain: </strong>{hours[0].chance_of_rain}%</p>
 							</div>
 						</div>
 
 						<div class="sm:flex sm:flex-col sm:gap-1" id="card">
-							<div class="sm:flex sm:flex-col sm:items-center">
-								<p><strong>{hours[1].time}</strong></p>
+							<div class="sm:flex sm:flex-col sm:items-center gap-3">
+								<p><strong>{dateParts(formatDate(hours[1].time)[dateHF], 'time')}</strong></p>
 								<img
 									class="sm:mx-auto sm:h-10 sm:w-auto"
 									src={$svg[resultArrFSH[i][1][0]][resultArrFSH[i][1][1]]}
@@ -71,15 +88,15 @@
 
 							<div class="bg-slate-500 sm:mx-auto sm:h-0.5 sm:w-4/5" />
 							<div class="mx-auto grid w-4/5 grid-rows-3 justify-center">
-								<p><strong>Temperature: </strong>{hours[1].temp_c}°C</p>
+								<p><strong>Temperature: </strong>{hours[1][temperature]} {tempUnit}</p>
 								<p><strong>Humidity: </strong>{hours[1].humidity}%</p>
 								<p><strong>Chance of Rain: </strong>{hours[1].chance_of_rain}%</p>
 							</div>
 						</div>
 
 						<div class="sm:flex sm:flex-col sm:gap-1" id="card">
-							<div class="sm:flex sm:flex-col sm:items-center">
-								<p><strong>{hours[2].time}</strong></p>
+							<div class="sm:flex sm:flex-col sm:items-center gap-3">
+								<p><strong>{dateParts(formatDate(hours[2].time)[dateHF], 'time')}</strong></p>
 								<img
 									class="sm:mx-auto sm:h-10 sm:w-auto"
 									src={$svg[resultArrFSH[i][2][0]][resultArrFSH[i][2][1]]}
@@ -90,7 +107,7 @@
 
 							<div class="bg-slate-500 sm:mx-auto sm:h-0.5 sm:w-4/5" />
 							<div class="mx-auto grid w-4/5 grid-rows-3 justify-center">
-								<p><strong>Temperature: </strong>{hours[2].temp_c}°C</p>
+								<p><strong>Temperature: </strong>{hours[2][temperature]} {tempUnit}</p>
 								<p><strong>Humidity: </strong>{hours[2].humidity}%</p>
 								<p><strong>Chance of Rain: </strong>{hours[2].chance_of_rain}%</p>
 							</div>

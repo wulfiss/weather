@@ -1,11 +1,15 @@
-import { completeWeather } from './store';
+import { completeWeather } from '$lib/store';
 
-const getCurrentWeather = async (city = 'reconquista') => {
+const getCurrentWeather = async (city = 'reconquista', key: string) => {
 	try {
 		const response = await fetch(
-			`https://api.weatherapi.com/v1/forecast.json?key=0a29cac888c648b39b7161817232903&q=${city}&days=3&aqi=no&alerts=no`,
+			`https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${city}&days=3&aqi=no&alerts=no`,
 			{ mode: 'cors' }
 		);
+
+		if (!response.ok) {
+			throw new Error('Error to load data from page');
+		}
 		const data = await response.json();
 		completeWeather.set(await data);
 		return data;

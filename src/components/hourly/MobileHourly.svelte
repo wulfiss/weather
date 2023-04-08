@@ -49,7 +49,7 @@
 			<div id="slideMobile{i}" name="slideMobile{i}" class="carousel-item relative w-full">
 				<div class="w-full">
 					<div class="flex w-full flex-col gap-1" id="card">
-						<div class="flex flex-col items-center">
+						<div class="flex flex-col items-center gap-2">
 							<p><strong>{dateParts(formatDate(hours.time)[dateHM], 'time')}</strong></p>
 							<img
 								class="sm:mx-auto sm:h-10 sm:w-auto"

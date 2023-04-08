@@ -44,7 +44,7 @@
 		<!------full screen------>
 		{#each $completeWeather.forecast.forecastday as days, i}
 			<div class="hidden sm:flex sm:flex-col sm:gap-1" id="card{i}">
-				<div class="sm:flex sm:flex-col sm:items-center">
+				<div class="sm:flex sm:flex-col sm:items-center gap-3">
 					<p><strong>{dateParts(formatDate(days.date)[dateDF], 'date')}</strong></p>
 					<img
 						class="sm:mx-auto sm:h-10 sm:w-auto"

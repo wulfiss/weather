@@ -57,7 +57,7 @@
 				<div id="slideFull{i}" name="slideFull{i}" class="carousel-item relative w-full">
 					<div class="sm:mx-auto sm:grid sm:w-11/12 sm:grid-cols-3 sm:grid-rows-1 sm:gap-9">
 						<div class="sm:flex sm:flex-col sm:gap-1" id="card">
-							<div class="sm:flex sm:flex-col sm:items-center">
+							<div class="sm:flex sm:flex-col sm:items-center gap-3">
 								<p><strong>{dateParts(formatDate(hours[0].time)[dateHF], 'time')}</strong></p>
 								<img
 									class="sm:mx-auto sm:h-10 sm:w-auto"
@@ -76,7 +76,7 @@
 						</div>
 
 						<div class="sm:flex sm:flex-col sm:gap-1" id="card">
-							<div class="sm:flex sm:flex-col sm:items-center">
+							<div class="sm:flex sm:flex-col sm:items-center gap-3">
 								<p><strong>{dateParts(formatDate(hours[1].time)[dateHF], 'time')}</strong></p>
 								<img
 									class="sm:mx-auto sm:h-10 sm:w-auto"
@@ -95,7 +95,7 @@
 						</div>
 
 						<div class="sm:flex sm:flex-col sm:gap-1" id="card">
-							<div class="sm:flex sm:flex-col sm:items-center">
+							<div class="sm:flex sm:flex-col sm:items-center gap-3">
 								<p><strong>{dateParts(formatDate(hours[2].time)[dateHF], 'time')}</strong></p>
 								<img
 									class="sm:mx-auto sm:h-10 sm:w-auto"

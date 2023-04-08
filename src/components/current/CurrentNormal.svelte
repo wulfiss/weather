@@ -42,7 +42,7 @@
 
 {#if $completeWeather}
 	<div class="main grid grid-cols-1 gap-3 sm:mx-auto sm:flex sm:h-80 sm:gap-20">
-		<div class="grid grid-cols-1 justify-items-center sm:flex sm:flex-col sm:items-center sm:justify-around">
+		<div class="grid grid-cols-1 justify-items-center sm:flex sm:flex-col sm:items-center sm:justify-around gap-3">
 			<h1 class="text-xl">
 				<strong
 					>{$completeWeather.location.name}, {$completeWeather.location.region}, {$completeWeather.location
@@ -50,7 +50,7 @@
 				>
 			</h1>
 			<img
-				class="h-36 object-fill sm:h-48"
+				class="h-36 sm:h-48"
 				src={$svg[resultOne][resultTwo]}
 				alt="condition imagen {$completeWeather.current.condition.text}"
 			/>

@@ -9,8 +9,6 @@
 	import { checkElExistLocalStorageReturnIt, validateInput } from '$lib/util';
 	export let data;
 
-	console.log(data.API_KEY);
-
 	onMount(() => {
 		let unitCheck: string = checkElExistLocalStorageReturnIt('unit', 'metric');
 		let temp = { unit: unitCheck };
@@ -18,7 +16,6 @@
 
 		let city: string = checkElExistLocalStorageReturnIt('location', 'Reconquista, Argentina');
 
-		console.log($units);
 		if (!validateInput(city)) {
 			city = 'Reconquista';
 		}

@@ -54,7 +54,12 @@ const dateParts = (dateFormated: string, opt: string): string | undefined => {
 	const parts: string[] = dateFormated.split(' ');
 
 	if (opt === 'time') {
-		return `${parts[parts.length - 2]} ${parts[parts.length - 1]}`;
+		const tempTime = `${parts[parts.length - 2]} ${parts[parts.length - 1]}`;
+		if (tempTime !== '24:00 hs') {
+			return tempTime;
+		}
+
+		return '00:00 hs';
 	}
 
 	if (opt === 'date') {

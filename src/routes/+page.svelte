@@ -3,12 +3,17 @@
 	import DailyMain from '../components/daily/DailyMain.svelte';
 	import HourlyMain from '../components/hourly/HourlyMain.svelte';
 	import { onMount } from 'svelte';
-	import { getCurrentWeather } from '$lib/getData';
 	import { units } from '$lib/store';
 	import { checkElExistLocalStorageReturnIt, validateInput } from '$lib/util';
-	export let data;
+	import { completeWeather } from '$lib/store';
 
-	onMount(() => {
+	const getData = async (city: string) => {
+		const response = await fetch(`/api/weather?city=${city}`);
+		let weather = await response.json();
+		completeWeather.set(await weather);
+	};
+
+	onMount(async () => {
 		let unitCheck: string = checkElExistLocalStorageReturnIt('unit', 'metric');
 		let temp = { unit: unitCheck };
 		units.set(temp);
@@ -18,7 +23,8 @@
 		if (!validateInput(city)) {
 			city = 'Reconquista';
 		}
-		getCurrentWeather(city, data.API_KEY);
+
+		getData(city);
 	});
 
 	let current = 'daily';

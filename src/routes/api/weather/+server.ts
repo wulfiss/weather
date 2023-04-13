@@ -1,7 +1,6 @@
 import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import dotenv from 'dotenv';
-dotenv.config();
+import { VERCEL_API_KEY } from '$env/static/private';
 
 export const GET: RequestHandler = async ({ url }) => {
 	const city = url.searchParams.get('city');
@@ -10,8 +9,9 @@ export const GET: RequestHandler = async ({ url }) => {
 		throw error(400, 'Missing city parameter');
 	}
 
-	const API_KEY = process.env.VERCEL_API_KEY;
-	const API_URL = `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${city}&days=3&aqi=no&alerts=no`;
+	/* const API_KEY = VERCEL_API_KEY; */
+
+	const API_URL = `https://api.weatherapi.com/v1/forecast.json?key=${VERCEL_API_KEY}&q=${city}&days=3&aqi=no&alerts=no`;
 
 	const response = await fetch(API_URL, { mode: 'cors' });
 
@@ -56,5 +56,13 @@ export const GET: RequestHandler = async ({ url }) => {
   const data = await response.json(); // parse the JSON data
 
   return new Response(JSON.stringify(data)); // return the data as JSON
+};
+
+// This function takes a city name as a parameter and fetches the weather data from the /api/weather endpoint.
+// It then updates the completeWeather store with the weather data.
+const getData = async (city: string) => {
+	const response = await fetch(`/api/weather?city=${city}`);
+	const weather = await response.json();
+	completeWeather.set(await weather);
 };
 ``` */

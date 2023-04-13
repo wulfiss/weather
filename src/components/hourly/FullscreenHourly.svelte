@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { completeWeather, units } from '../../lib/store';
+	import { completeWeather, units, times } from '../../lib/store';
 	import svg from '$lib/svgStore';
 	import { formatDate, dateParts } from '$lib/util';
 
@@ -36,16 +36,22 @@
 	let tempUnit: string;
 	let dateHF: number;
 
+	$: if ($times.time === '24hours') {
+		dateHF = 1;
+	}
+
+	$: if ($times.time === '12hours') {
+		dateHF = 0;
+	}
+
 	$: if ($units.unit === 'metric') {
 		temperature = 'temp_c';
 		tempUnit = '°C';
-		dateHF = 1;
 	}
 
 	$: if ($units.unit === 'imperial') {
 		temperature = 'temp_f';
 		tempUnit = '°F';
-		dateHF = 0;
 	}
 </script>
 
@@ -57,7 +63,7 @@
 				<div id="slideFull{i}" name="slideFull{i}" class="carousel-item relative w-full">
 					<div class="sm:mx-auto sm:grid sm:w-11/12 sm:grid-cols-3 sm:grid-rows-1 sm:gap-9">
 						<div class="sm:flex sm:flex-col sm:gap-1" id="card">
-							<div class="sm:flex sm:flex-col sm:items-center gap-3">
+							<div class="gap-3 sm:flex sm:flex-col sm:items-center">
 								<p><strong>{dateParts(formatDate(hours[0].time)[dateHF], 'time')}</strong></p>
 								<img
 									class="sm:mx-auto sm:h-10 sm:w-auto"
@@ -76,7 +82,7 @@
 						</div>
 
 						<div class="sm:flex sm:flex-col sm:gap-1" id="card">
-							<div class="sm:flex sm:flex-col sm:items-center gap-3">
+							<div class="gap-3 sm:flex sm:flex-col sm:items-center">
 								<p><strong>{dateParts(formatDate(hours[1].time)[dateHF], 'time')}</strong></p>
 								<img
 									class="sm:mx-auto sm:h-10 sm:w-auto"
@@ -95,7 +101,7 @@
 						</div>
 
 						<div class="sm:flex sm:flex-col sm:gap-1" id="card">
-							<div class="sm:flex sm:flex-col sm:items-center gap-3">
+							<div class="gap-3 sm:flex sm:flex-col sm:items-center">
 								<p><strong>{dateParts(formatDate(hours[2].time)[dateHF], 'time')}</strong></p>
 								<img
 									class="sm:mx-auto sm:h-10 sm:w-auto"

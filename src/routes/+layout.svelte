@@ -2,19 +2,15 @@
 	import '../app.css';
 	import SearchBar from '../components/SearchBar/SearchBar.svelte';
 	import Footer from '../components/Footer/Footer.svelte';
-	export let data;
-
-	let key = data.API_KEY;
 </script>
 
 <header class="w-full flex-1 justify-center sm:mx-1 sm:h-20 sm:w-auto">
-	<SearchBar {key} />
+	<SearchBar />
 </header>
 <main class="sm:flex sm:h-fit sm:w-full sm:flex-col sm:justify-center sm:gap-10">
 	<slot />
 </main>
 <Footer />
-
 
 <style lang="postcss">
 	* {

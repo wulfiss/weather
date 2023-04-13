@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { completeWeather, units } from '../../lib/store';
+	import { completeWeather, units, times } from '../../lib/store';
 	import svg from '$lib/svgStore';
 	import { formatDate, dateParts } from '$lib/util';
 
@@ -24,18 +24,24 @@
 	let tempUnit: string;
 	let dateDF: number;
 
+	$: if ($times.time === '24hours') {
+		dateDF = 1;
+	}
+
+	$: if ($times.time === '12hours') {
+		dateDF = 0;
+	}
+
 	$: if ($units.unit === 'metric') {
 		temperatureMax = 'maxtemp_c';
 		temperatureMin = 'mintemp_c';
 		tempUnit = '°C';
-		dateDF = 1;
 	}
 
 	$: if ($units.unit === 'imperial') {
 		temperatureMax = 'maxtemp_f';
 		temperatureMin = 'mintemp_f';
 		tempUnit = '°F';
-		dateDF = 0;
 	}
 </script>
 
@@ -44,7 +50,7 @@
 		<!------full screen------>
 		{#each $completeWeather.forecast.forecastday as days, i}
 			<div class="hidden sm:flex sm:flex-col sm:gap-1" id="card{i}">
-				<div class="sm:flex sm:flex-col sm:items-center gap-3">
+				<div class="gap-3 sm:flex sm:flex-col sm:items-center">
 					<p><strong>{dateParts(formatDate(days.date)[dateDF], 'date')}</strong></p>
 					<img
 						class="sm:mx-auto sm:h-10 sm:w-auto"

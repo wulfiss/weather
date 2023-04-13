@@ -1,3 +1,13 @@
+import { completeWeather } from '$lib/store';
+
+// This function takes a city name as a parameter and fetches the weather data from the /api/weather endpoint.
+// It then updates the completeWeather store with the weather data.
+const getData = async (city: string) => {
+	const response = await fetch(`/api/weather?city=${city}`);
+	const weather = await response.json();
+	completeWeather.set(await weather);
+};
+
 const setLocalStorage = (el: string, nameEl: string): void => {
 	localStorage.setItem(nameEl, JSON.stringify(el));
 };
@@ -68,7 +78,7 @@ const dateParts = (dateFormated: string, opt: string): string | undefined => {
 	}
 };
 
-export { setLocalStorage, checkElExistLocalStorageReturnIt, formatDate, validateInput, dateParts };
+export { setLocalStorage, checkElExistLocalStorageReturnIt, formatDate, validateInput, dateParts, getData };
 
 /* const regex = /^[a-zA-Z]{3,}([ ,]*[a-zA-Z]+)*$/;
 

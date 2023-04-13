@@ -3,13 +3,17 @@
 	import DailyMain from '../components/daily/DailyMain.svelte';
 	import HourlyMain from '../components/hourly/HourlyMain.svelte';
 	import { onMount } from 'svelte';
-	import { units } from '$lib/store';
+	import { units, times } from '$lib/store';
 	import { checkElExistLocalStorageReturnIt, validateInput, getData } from '$lib/util';
 
 	onMount(async () => {
 		let unitCheck: string = checkElExistLocalStorageReturnIt('unit', 'metric');
-		let temp = { unit: unitCheck };
-		units.set(temp);
+		let tempUnit = { unit: unitCheck };
+		units.set(tempUnit);
+
+		let timeCheck: string = checkElExistLocalStorageReturnIt('time', '24hours');
+		let tempTime = { time: timeCheck };
+		times.set(tempTime);
 
 		let city: string = checkElExistLocalStorageReturnIt('location', 'Reconquista, Argentina');
 

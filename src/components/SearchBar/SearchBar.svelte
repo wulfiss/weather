@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { setLocalStorage, validateInput, getData } from '$lib/util';
 
-	let cityName: string;
+	let cityName: string = '';
 	let valid: boolean = true;
 
 	const handleClick = () => {

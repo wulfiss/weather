@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { completeWeather, units } from '$lib/store';
+	import { completeWeather, units, times } from '$lib/store';
 	import svg from '$lib/svgStore';
 	import { formatDate } from '$lib/util';
 
@@ -21,13 +21,20 @@
 	let velocityUnit: string;
 	let date: number;
 
+	$: if ($times.time === '24hours') {
+		date = 1;
+	}
+
+	$: if ($times.time === '12hours') {
+		date = 0;
+	}
+
 	$: if ($units.unit === 'metric') {
 		temperature = 'temp_c';
 		feelslike = 'feelslike_c';
 		windVelocity = 'wind_kph';
 		tempUnit = '°C';
 		velocityUnit = 'Kph';
-		date = 1;
 	}
 
 	$: if ($units.unit === 'imperial') {
@@ -36,13 +43,12 @@
 		windVelocity = 'wind_mph';
 		tempUnit = '°F';
 		velocityUnit = 'Mph';
-		date = 0;
 	}
 </script>
 
 {#if $completeWeather}
 	<div class="main grid grid-cols-1 gap-3 sm:mx-auto sm:flex sm:h-80 sm:gap-20">
-		<div class="grid grid-cols-1 justify-items-center sm:flex sm:flex-col sm:items-center sm:justify-around gap-3">
+		<div class="grid grid-cols-1 justify-items-center gap-3 sm:flex sm:flex-col sm:items-center sm:justify-around">
 			<h1 class="text-xl">
 				<strong
 					>{$completeWeather.location.name}, {$completeWeather.location.region}, {$completeWeather.location

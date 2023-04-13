@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { completeWeather, units } from '../../lib/store';
+	import { completeWeather, units, times } from '../../lib/store';
 	import svg from '$lib/svgStore';
 	import { formatDate, dateParts } from '$lib/util';
 
@@ -30,16 +30,22 @@
 	let tempUnit: string;
 	let dateHM: number;
 
+	$: if ($times.time === '24hours') {
+		dateHM = 1;
+	}
+
+	$: if ($times.time === '12hours') {
+		dateHM = 0;
+	}
+
 	$: if ($units.unit === 'metric') {
 		temperature = 'temp_c';
 		tempUnit = '°C';
-		dateHM = 1;
 	}
 
 	$: if ($units.unit === 'imperial') {
 		temperature = 'temp_f';
 		tempUnit = '°F';
-		dateHM = 0;
 	}
 </script>
 

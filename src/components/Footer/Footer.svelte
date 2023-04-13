@@ -1,10 +1,13 @@
 <script lang="ts">
+	import SwitchTime from '../Switch/SwitchTime.svelte';
 	import Switch from '../Switch/Switch.svelte';
-	import svg from '$lib/svgStore';
 </script>
 
 <footer class="flex w-full items-center justify-center">
 	<div class="my-3 flex h-8 justify-center">
+		<div class="grid h-7 w-32 flex-grow place-items-end bg-base-100">
+			<SwitchTime />
+		</div>
 		<div class="grid h-7 w-24 flex-grow place-items-end bg-base-100">
 			<Switch />
 		</div>

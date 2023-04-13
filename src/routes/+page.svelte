@@ -4,14 +4,7 @@
 	import HourlyMain from '../components/hourly/HourlyMain.svelte';
 	import { onMount } from 'svelte';
 	import { units } from '$lib/store';
-	import { checkElExistLocalStorageReturnIt, validateInput } from '$lib/util';
-	import { completeWeather } from '$lib/store';
-
-	const getData = async (city: string) => {
-		const response = await fetch(`/api/weather?city=${city}`);
-		let weather = await response.json();
-		completeWeather.set(await weather);
-	};
+	import { checkElExistLocalStorageReturnIt, validateInput, getData } from '$lib/util';
 
 	onMount(async () => {
 		let unitCheck: string = checkElExistLocalStorageReturnIt('unit', 'metric');

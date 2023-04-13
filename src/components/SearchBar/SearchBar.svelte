@@ -1,19 +1,16 @@
 <script lang="ts">
-	import { getCurrentWeather } from '../../lib/getData';
-	import { setLocalStorage, validateInput } from '$lib/util';
-
-	export let key: string;
+	import { setLocalStorage, validateInput, getData } from '$lib/util';
 
 	let cityName: string;
 	let valid: boolean = true;
 
-	const handleClick = (key) => {
+	const handleClick = () => {
 		if (!validateInput(cityName)) {
 			valid = false;
 			cityName = '';
 			return false;
 		}
-		getCurrentWeather(cityName, key);
+		getData(cityName);
 		setLocalStorage(cityName, 'location');
 		cityName = '';
 		valid = true;
@@ -37,7 +34,7 @@
 		/>
 	{/if}
 
-	<button on:click={handleClick(key)} class="md:btn-auto btn-sm btn mx-2 h-10 w-20 px-3">Search</button>
+	<button on:click={handleClick} class="md:btn-auto btn-sm btn mx-2 h-10 w-20 px-3">Search</button>
 </form>
 
 <style lang="postcss">

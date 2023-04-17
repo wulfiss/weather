@@ -5,13 +5,13 @@
 	let valid: boolean = true;
 
 	const handleClick = () => {
-		if (!validateInput(cityName)) {
+		if (!validateInput(cityName.trimEnd())) {
 			valid = false;
 			cityName = '';
 			return false;
 		}
 		getData(cityName);
-		setLocalStorage(cityName, 'location');
+		setLocalStorage(cityName.trimEnd(), 'location');
 		cityName = '';
 		valid = true;
 	};

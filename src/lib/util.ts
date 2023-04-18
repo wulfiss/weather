@@ -5,7 +5,11 @@ import { completeWeather } from '$lib/store';
 const getData = async (city: string) => {
 	const response = await fetch(`/api/weather?city=${city}`);
 	const weather = await response.json();
-	completeWeather.set(await weather);
+	console.log(await weather.message);
+	if (!(await weather.message)) {
+		//check if the api call doesn't return a error mgs, so the UI doesn't get updated, solving the problem of the search not working after a non existent city enter in the search bar.
+		completeWeather.set(await weather);
+	}
 };
 
 const setLocalStorage = (el: string, nameEl: string): void => {

@@ -1,5 +1,5 @@
 import { completeWeather } from '$lib/store';
-
+import { validity } from '$lib/store';
 // This function takes a city name as a parameter and fetches the weather data from the /api/weather endpoint.
 // It then updates the completeWeather store with the weather data.
 const getData = async (city: string) => {
@@ -9,6 +9,8 @@ const getData = async (city: string) => {
 	if (!(await weather.message)) {
 		//check if the api call doesn't return a error mgs, so the UI doesn't get updated, solving the problem of the search not working after a non existent city enter in the search bar.
 		completeWeather.set(await weather);
+	} else {
+		validity.set('bad');
 	}
 };
 

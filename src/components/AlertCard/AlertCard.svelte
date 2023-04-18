@@ -10,6 +10,10 @@
 	$: if ($validity === 'invalid') {
 		trigger = true;
 	}
+
+	$: if($validity === 'bad'){
+		trigger = true;
+	}
 </script>
 
 {#if trigger === true}
@@ -18,6 +22,9 @@
 			<h2 class="card-title">Error!</h2>
 			{#if $validity === 'invalid'}
 				<p>City name no valid.</p>
+				<p>Please enter valid one.</p>
+			{:else if $validity === 'bad'}
+				<p>City not found.</p>
 				<p>Please enter valid one.</p>
 			{/if}
 			<div class="card-actions justify-end">

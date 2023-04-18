@@ -2,6 +2,7 @@
 	import CurrentNormal from '../components/current/CurrentNormal.svelte';
 	import DailyMain from '../components/daily/DailyMain.svelte';
 	import HourlyMain from '../components/hourly/HourlyMain.svelte';
+	import AlertCard from '../components/AlertCard/AlertCard.svelte';
 	import { onMount } from 'svelte';
 	import { units, times } from '$lib/store';
 	import { checkElExistLocalStorageReturnIt, validateInput, getData } from '$lib/util';
@@ -29,6 +30,7 @@
 </script>
 
 <svelte:component this={CurrentNormal} />
+<svelte:component this={AlertCard} />
 
 <div class="btn-group flex h-16 w-full items-center justify-center">
 	<button

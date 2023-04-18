@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { validity } from '$lib/store';
+	import { setLocalStorage} from '$lib/util';
 	let trigger = false;
 
 	const handleClick = () => {
@@ -13,6 +14,7 @@
 
 	$: if($validity === 'bad'){
 		trigger = true;
+		setLocalStorage('Reconquista', 'location');
 	}
 </script>
 
@@ -22,10 +24,10 @@
 			<h2 class="card-title">Error!</h2>
 			{#if $validity === 'invalid'}
 				<p>City name no valid.</p>
-				<p>Please enter valid one.</p>
+				<p>Please enter a valid one.</p>
 			{:else if $validity === 'bad'}
 				<p>City not found.</p>
-				<p>Please enter valid one.</p>
+				<p>Please enter another city.</p>
 			{/if}
 			<div class="card-actions justify-end">
 				<button class="btn-primary btn" on:click={handleClick}>Accept</button>

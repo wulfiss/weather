@@ -12,8 +12,12 @@
 			cityName = '';
 			return false;
 		}
+
 		getData(cityName);
-		setLocalStorage(cityName, 'location');
+
+		if ($validity === 'true') {
+			setLocalStorage(cityName, 'location');
+		}
 		cityName = '';
 		valid = true;
 	};

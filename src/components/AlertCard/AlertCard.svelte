@@ -19,7 +19,7 @@
 </script>
 
 {#if trigger === true}
-	<div class="card absolute z-10 w-96 bg-neutral text-neutral-content">
+	<div class="card absolute z-10 w-72 md:w-96 bg-neutral text-neutral-content mx-auto left-0 right-0 top-96">
 		<div class="card-body items-center text-center">
 			<h2 class="card-title">Error!</h2>
 			{#if $validity === 'invalid'}
